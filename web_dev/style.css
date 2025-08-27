@@ -218,3 +218,19 @@ main {
         margin-left: 2rem;
     }
 }
+
+/* ======================================= */
+/*          VISTA DESKTOP (1024px y más)   */
+/* ======================================= */
+@media (min-width: 1024px) {
+
+    /* Refinamos el grid para tener una barra lateral de ancho fijo */
+    main {
+        grid-template-columns: 300px 1fr; 
+    }
+
+    /* Aumentamos un poco la fuente para mejor legibilidad */
+    body {
+        font-size: 17px;
+    }
+}
