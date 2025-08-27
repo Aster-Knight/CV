@@ -150,3 +150,20 @@ header nav {
     gap: 1.5rem;              /* Crea un espacio de 1.5rem ENTRE cada enlace */
     margin-top: 1rem;         /* Añade un poco de espacio sobre la barra de navegación */
 }
+
+/* --- Aplicación de Grid en la Estructura Principal --- */
+main {
+    display: grid;                     /* ¡Activamos Grid! */
+    grid-template-columns: 1fr 2.5fr;    /* Define las 2 columnas y sus tamaños */
+    gap: 2rem;                         /* Mantiene el espacio entre columnas y filas */
+    padding: 2rem;
+    max-width: 1200px;                 /* Aumentamos un poco el ancho máximo */
+    margin: 0 auto;
+}
+
+/* Estilos para los contenedores de las columnas (buena práctica) */
+.sidebar, .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Esto mantiene el espacio vertical entre las tarjetas dentro de cada columna */
+}

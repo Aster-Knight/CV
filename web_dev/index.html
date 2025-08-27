@@ -31,15 +31,7 @@
         </div>
     </header>
     <main>
-            <section id="sobre-mi">
-                <div class="card">
-                    <p>Estudiante de la carrera de Computer Science en la Universidad Francisco Marroquin.
-                        Aficionado de las muchas artes narrativas y un entusiasta de las ciencias forenses.
-                    </p>
-                </div>
-            </section>
-
-        <section id="habilidades">
+    <aside class="sidebar">
             <div class="card">
                 <h3>Soft Skills</h3>
                 <ol>
@@ -59,38 +51,18 @@
                     <li>Python</li>
                 </ul>
             </div>
+    </aside>
 
-            <div class="card">
-                <h3>Tecnologías</h3>
-                        <dl>
-                            <dt>SO Linux Desktop</dt>
-                            <dd>
-                                Experiencia en el uso de sistemas operativos basados en Linux (como Ubuntu, Fedora, etc.) para desarrollo. Acostumbrado a la gestión de paquetes, la personalización del entorno y el uso de la terminal de comandos para agilizar flujos de trabajo.
-                            </dd>
-
-                            <dt>Git</dt>
-                            <dd>
-                                Sólido manejo de Git, el sistema de control de versiones distribuido estándar en la industria. Utilizado para el seguimiento de cambios en proyectos, colaboración en equipo mediante repositorios (GitHub, GitLab) y gestión de ramas de desarrollo.
-                            </dd>
-
-                            <dt>SQL</dt>
-                            <dd>
-                                Conocimiento en SQL (Lenguaje de Consulta Estructurado) para la gestión y manipulación de información en bases de datos relacionales. Capacidad para realizar consultas, inserciones, actualizaciones y borrado de datos.
-                            </dd>
-
-                            <dt>Docker</dt>
-                            <dd>
-                                Uso de Docker para crear, desplegar y ejecutar aplicaciones en contenedores. Esta tecnología permite empaquetar una aplicación con todas sus dependencias, asegurando que funcione de manera consistente en cualquier entorno de desarrollo o producción.
-                            </dd>
-
-                            <dt>Microcontroladores</dt>
-                            <dd>
-                                Familiarizado con la programación de microcontroladores, que son esencialmente una computadora en un solo chip diseñados para gestionar tareas específicas. Experiencia en la automatización de procesos y el control de elementos de entrada/salida en sistemas embebidos.
-                            </dd>
-                        </dl>
-            </div>
+    <div class="main-content">
+        <section id="sobre-mi">
+                <div class="card">
+                    <p>Estudiante de la carrera de Computer Science en la Universidad Francisco Marroquin.
+                        Aficionado de las muchas artes narrativas y un entusiasta de las ciencias forenses.
+                    </p>
+                </div>
 
         </section>
+
         <section id="educacion">
             <div class="card">
                 <h2>Educación</h2>
@@ -117,11 +89,11 @@
                     </tbody>
                 </table>
             </div>
+
         </section>
-        <section id="experiencia">
-                <div class="card">
+                <section id="experiencia" class="card">
                             <h2>Experiencia Laboral</h2>
-                            <table>
+                            <table class="experience-table">
                                 <caption>Resumen de mi experiencia profesional y en proyectos</caption>
                         <thead>
                             <tr>
@@ -143,9 +115,42 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
         </section>
 
+
+        <section id="tecnologias" class="card">
+            <h3>Tecnologías</h3>
+            <dl>
+                <dt>SO Linux Desktop</dt>
+                <dd>
+                    Experiencia en el uso de sistemas operativos basados en Linux (como Ubuntu, Fedora, etc.) para desarrollo. Acostumbrado a la gestión de paquetes, la personalización del entorno y el uso de la terminal de comandos para agilizar flujos de trabajo.
+                            </dd>
+
+                            <dt>Git</dt>
+                            <dd>
+                                Sólido manejo de Git, el sistema de control de versiones distribuido estándar en la industria. Utilizado para el seguimiento de cambios en proyectos, colaboración en equipo mediante repositorios (GitHub, GitLab) y gestión de ramas de desarrollo.
+                            </dd>
+
+                            <dt>SQL</dt>
+                            <dd>
+                                Conocimiento en SQL (Lenguaje de Consulta Estructurado) para la gestión y manipulación de información en bases de datos relacionales. Capacidad para realizar consultas, inserciones, actualizaciones y borrado de datos.
+                            </dd>
+
+                            <dt>Docker</dt>
+                            <dd>
+                                Uso de Docker para crear, desplegar y ejecutar aplicaciones en contenedores. Esta tecnología permite empaquetar una aplicación con todas sus dependencias, asegurando que funcione de manera consistente en cualquier entorno de desarrollo o producción.
+                            </dd>
+
+                            <dt>Microcontroladores</dt>
+                            <dd>
+                                Familiarizado con la programación de microcontroladores, que son esencialmente una computadora en un solo chip diseñados para gestionar tareas específicas. Experiencia en la automatización de procesos y el control de elementos de entrada/salida en sistemas embebidos.
+                            </dd>
+                        </dl>
+            </div>
+        </section>
+
+
+    </div>
     </main>
 
 </body>
