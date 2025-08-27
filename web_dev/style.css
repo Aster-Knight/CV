@@ -38,3 +38,45 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* Estilos del Header con Flexbox y GIF de fondo */
+header {
+    position: relative; /* Contenedor para el GIF */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    min-height: 300px;
+    overflow: hidden; /* Oculta partes del GIF que se salgan */
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('fondo_perfil.gif') no-repeat center center/cover;
+    filter: brightness(0.4); /* Oscurece el GIF para que el texto sea legible */
+    z-index: -1;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column; /* Apila la foto y el texto en móviles */
+    align-items: center;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Hace la imagen redonda */
+    border: 4px solid var(--primary-color);
+    object-fit: cover;
+}
+
+.header-text {
+    margin-top: 1rem;
+}
