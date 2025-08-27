@@ -1,0 +1,40 @@
+/* Importar una fuente desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+/* Definir paleta de colores y variables globales */
+:root {
+    --bg-color: #1a1a1a;
+    --card-color: #2c2c2c;
+    --primary-color: #00aaff;
+    --text-color: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --font-main: 'Lato', sans-serif;
+}
+
+/* Estilos base y reseteo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
