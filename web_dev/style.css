@@ -39,18 +39,24 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Estilos del Header con Flexbox y GIF de fondo */
+/* ======================================= */
+/*          HEADER CORREGIDO               */
+/* ======================================= */
+
+/* 1. Contenedor Principal del Header */
 header {
-    position: relative; /* Contenedor para el GIF */
+    position: relative; 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 4rem 2rem;
+    /* Padding reducido para dar más espacio en móviles */
+    padding: 3rem 1rem; 
     min-height: 300px;
-    overflow: hidden; /* Oculta partes del GIF que se salgan */
+    overflow: hidden; /* Muy importante para que nada se desborde */
 }
 
+/* El GIF de fondo no necesita cambios */
 header::before {
     content: '';
     position: absolute;
@@ -58,27 +64,47 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('fondo_perfil.gif') no-repeat center center/cover;
-    filter: brightness(0.4); /* Oscurece el GIF para que el texto sea legible */
+    background: url('tu-gif-aqui.gif') no-repeat center center/cover;
+    filter: brightness(0.4);
     z-index: -1;
 }
 
+/* 2. Contenedor del Contenido (Foto + Texto) */
 .header-content {
     display: flex;
-    flex-direction: column; /* Apila la foto y el texto en móviles */
+    flex-direction: column; 
     align-items: center;
+    gap: 1.5rem; 
+    /* Salvaguarda para que nunca sea más ancho que la pantalla */
+    max-width: 100%;
 }
 
+/* 3. Contenedor del Texto (Nombre, Título, Nav) */
+.header-text {
+    /* LA SOLUCIÓN CLAVE: Le decimos a este contenedor que su contenido DEBE ajustarse */
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* Compatibilidad con navegadores antiguos */
+    width: 100%; /* Le decimos que ocupe todo el ancho disponible */
+}
+
+/* La foto de perfil no necesita cambios */
 .profile-photo {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Hace la imagen redonda */
+    border-radius: 50%;
     border: 4px solid var(--primary-color);
     object-fit: cover;
 }
 
-.header-text {
+/* Los estilos de la navegación no necesitan cambios */
+header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
     margin-top: 1rem;
+    /* Añadimos esto para que los enlaces también se ajusten si es necesario */
+    flex-wrap: wrap; 
 }
 
 /* Estructura del Main con CSS Grid */
@@ -151,19 +177,18 @@ header nav {
     margin-top: 1rem;         /* Añade un poco de espacio sobre la barra de navegación */
 }
 
-/* --- Aplicación de Grid en la Estructura Principal --- */
 main {
-    display: grid;                     /* ¡Activamos Grid! */
-    grid-template-columns: 1fr 2.5fr;    /* Define las 2 columnas y sus tamaños */
-    gap: 2rem;                         /* Mantiene el espacio entre columnas y filas */
-    padding: 2rem;
-    max-width: 1200px;                 /* Aumentamos un poco el ancho máximo */
+    display: flex;             /* Usamos Flexbox para una sola columna */
+    flex-direction: column;    /* Apila los elementos verticalmente */
+    gap: 1.5rem;               /* Espacio entre tarjetas en móvil */
+    padding: 1.5rem 1rem;      /* Menos padding en los lados */
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Estilos para los contenedores de las columnas (buena práctica) */
+/* También le decimos a los contenedores internos que se comporten como columnas */
 .sidebar, .main-content {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* Esto mantiene el espacio vertical entre las tarjetas dentro de cada columna */
+    gap: 1.5rem; /* Espacio entre las tarjetas DENTRO de cada columna */
 }
