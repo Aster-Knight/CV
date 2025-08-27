@@ -141,3 +141,12 @@ th, td {
     text-align: left;
     border-bottom: 1px solid var(--text-secondary);
 }
+
+/* --- Aplicación de Flexbox en la Navegación --- */
+header nav {
+    display: flex;            /* ¡Activamos Flexbox! */
+    justify-content: center;  /* Centra los enlaces horizontalmente */
+    align-items: center;      /* Centra los enlaces verticalmente (buena práctica) */
+    gap: 1.5rem;              /* Crea un espacio de 1.5rem ENTRE cada enlace */
+    margin-top: 1rem;         /* Añade un poco de espacio sobre la barra de navegación */
+}
