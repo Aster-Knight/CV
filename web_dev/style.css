@@ -80,3 +80,64 @@ header::before {
 .header-text {
     margin-top: 1rem;
 }
+
+/* Estructura del Main con CSS Grid */
+main {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto; /* Centra el contenido principal */
+}
+
+/* Estilo de las Tarjetas */
+.card {
+    padding: 2rem;
+    border-radius: 10px;
+    
+    /* Punto 4: Degradado estático (alternativa CSS) */
+    background: linear-gradient(145deg, #2c2c2c, #3a3a3a);
+    
+    /* Punto 2: Animación de entrada */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Para que las tarjetas no aparezcan todas a la vez */
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.4s; }
+.card:nth-child(4) { animation-delay: 0.6s; }
+/* ... y así sucesivamente si tienes más tarjetas */
+
+#habilidades .card:nth-of-type(2) { animation-delay: 0.8s; }
+#habilidades .card:nth-of-type(3) { animation-delay: 1s; }
+
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Punto 1: Colores de fondo por sección (opcional si usas tarjetas) */
+/* Puedes descomentar esto si prefieres fondos de sección en lugar de tarjetas */
+/*
+#educacion { background-color: #252525; }
+#experiencia { background-color: #282828; }
+#habilidades { background-color: #2b2b2b; }
+*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--text-secondary);
+}
