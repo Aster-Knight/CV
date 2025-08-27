@@ -192,3 +192,29 @@ main {
     flex-direction: column;
     gap: 1.5rem; /* Espacio entre las tarjetas DENTRO de cada columna */
 }
+
+/* --- Media Queries para Responsividad --- */
+
+/* ======================================= */
+/*          VISTA TABLET (768px y más)     */
+/* ======================================= */
+@media (min-width: 768px) {
+    
+    /* Cuando la pantalla es de 768px o más, main SE CONVIERTE en un Grid */
+    main {
+        display: grid;
+        grid-template-columns: 1fr 2.5fr; /* ¡Nuestras dos columnas VUELVEN! */
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    /* Opcional: Alinear la foto y el texto del header en fila */
+    .header-content {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .header-text {
+        margin-left: 2rem;
+    }
+}
