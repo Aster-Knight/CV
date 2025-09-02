@@ -196,3 +196,62 @@ main {
         font-size: 17px;
     }
 }
+
+/* Cuando el body tenga la clase .pdf-view, se aplican estas reglas generales */
+.pdf-view {
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 12pt !important;
+}
+
+/* Ocultar elementos innecesarios en la vista PDF */
+.pdf-view header::before,
+.pdf-view #download-btn {
+    display: none !important;
+}
+
+/* Re-estilizar Secciones y Componentes en la vista PDF */
+.pdf-view .card {
+    background: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+    /* Quitamos la animación para el PDF */
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.pdf-view h1, .pdf-view h2, .pdf-view h3, .pdf-view a {
+    color: #000 !important;
+}
+
+.pdf-view header {
+    background-color: #f0f0f0 !important;
+    border-bottom: 2px solid #ccc !important;
+}
+
+.pdf-view .profile-photo {
+    border-color: #000 !important;
+}
+
+/* Corregir el Layout en la vista PDF */
+.pdf-view main, .pdf-view .sidebar, .pdf-view .main-content {
+    display: block !important;
+    width: 100% !important;
+}
+
+.pdf-view .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Corregir las tablas de Bootstrap para la vista PDF */
+.pdf-view .table, .pdf-view .table-dark {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+.pdf-view .table > :not(caption) > * > * {
+    background-color: inherit !important;
+}
