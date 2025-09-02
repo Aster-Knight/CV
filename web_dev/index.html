@@ -3,33 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV borrador</title>
-    <link rel="icon" href="favicon.png" type="image/png">
+    <title>CV Jonatan Aguilar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+
 </head>
 
 <body>
-    <header>
-        <div class="header-content">
-            
-            <div class="profile-picture-container">
-                <picture>
-                    <img src="cv foto.webp" alt="Foto de Jonatan Aguilar" class="profile-photo">
-                </picture>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Jonatan Aguilar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#educacion">Educación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiencia">Experiencia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tecnologias">Tecnologías</a>
+                    </li>
+                </ul>
             </div>
-
-            <div class="header-text">
-                <h1>Jonatan Aguilar</h1>
-                <h2>Estudiante de Computer Science</h2>
-                <nav>
-                    <a href="mailto:josue.aguilar@ufm.edu">Correo</a>
-                    <a href="https://github.com/Aster-Knight">Github</a>
-                    <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/">Linkedin</a>
-                </nav>
-            </div>
-
         </div>
+    </nav>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="downloadToast" class="toast" role="alert">
+            <div class="toast-header">
+            <strong class="me-auto">Notificación</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+            La descarga del CV ha comenzado.
+            </div>
+        </div>
+    </div>
+
+    <header class="d-flex justify-content-center align-items-center">
+
+    <div class="header-content text-center">
+
+        <div class="profile-picture-container">
+            <picture>
+                <img src="cv foto.webp" alt="Foto de Jonatan Aguilar" class="profile-photo rounded-circle border border-primary border-5">
+            </picture>
+        </div>
+        
+        <div class="header-text">
+            <h1>Jonatan Aguilar</h1>
+            <h2>Estudiante de Computer Science</h2>
+            <nav>
+                <!-- Correo: Icono de sobre -->
+                <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center">
+                    <i class="bi bi-envelope-fill me-2"></i> Correo
+                </a>
+
+                <!-- Github: Icono de Github -->
+                <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center">
+                    <i class="bi bi-github me-2"></i> Github
+                </a>
+
+                <!-- Linkedin: Icono de Linkedin -->
+                <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/" class="d-inline-flex align-items-center">
+                    <i class="bi bi-linkedin me-2"></i> Linkedin
+                </a>
+                
+                <button id="download-btn" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-download"></i>
+                    Descargar CV
+                </button>
+            </nav>
+        </div>
+    </div>
     </header>
+
     <main>
     <aside class="sidebar">
             <div class="card">
@@ -46,10 +100,11 @@
 
             <div class="card">
                 <h3>Lenguajes de Programación</h3>
-                <ul>
-                    <li>C y C++ (Rust?)</li>
-                    <li>Python</li>
-                </ul>
+                    <div>
+                        <span class="badge bg-primary fs-6 me-2">C/C++</span>
+                        <span class="badge bg-info fs-6 me-2">Python</span>
+                        <span class="badge bg-success fs-6">Rust</span>
+                    </div>
             </div>
     </aside>
 
@@ -119,40 +174,107 @@
 
 
         <section id="tecnologias" class="card">
-            <h3>Tecnologías</h3>
-            <dl>
-                <dt>SO Linux Desktop</dt>
-                <dd>
-                    Experiencia en el uso de sistemas operativos basados en Linux (como Ubuntu, Fedora, etc.) para desarrollo. Acostumbrado a la gestión de paquetes, la personalización del entorno y el uso de la terminal de comandos para agilizar flujos de trabajo.
-                            </dd>
+                        <div class="card-body"> <!-- Usamos un card-body para un mejor espaciado -->
+                            <h3 class="card-title">Tecnologías</h3>
+                            
+                            <!-- Contenedor para la primera tecnología -->
+                            <div class="mb-4">
+                                <h5>SO Linux Desktop</h5>
+                                <div class="progress" role="progressbar" style="height: 25px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 95%">Avanzado (95%)</div>
+                                </div>
+                                <p class="text-white-50 mt-2 small">
+                                    Experiencia en el uso de sistemas operativos basados en Linux para desarrollo, gestión de paquetes y uso de la terminal para agilizar flujos de trabajo.
+                                </p>
+                            </div>
 
-                            <dt>Git</dt>
-                            <dd>
-                                Sólido manejo de Git, el sistema de control de versiones distribuido estándar en la industria. Utilizado para el seguimiento de cambios en proyectos, colaboración en equipo mediante repositorios (GitHub, GitLab) y gestión de ramas de desarrollo.
-                            </dd>
+                            <!-- Contenedor para la segunda tecnología -->
+                            <div class="mb-4">
+                                <h5>Git</h5>
+                                <div class="progress" role="progressbar" style="height: 25px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 95%">Avanzado (95%)</div>
+                                </div>
+                                <p class="text-white-50 mt-2 small">
+                                    Sólido manejo de Git para el control de versiones, colaboración en equipo mediante repositorios (GitHub, GitLab) y gestión de ramas de desarrollo.
+                                </p>
+                            </div>
 
-                            <dt>SQL</dt>
-                            <dd>
-                                Conocimiento en SQL (Lenguaje de Consulta Estructurado) para la gestión y manipulación de información en bases de datos relacionales. Capacidad para realizar consultas, inserciones, actualizaciones y borrado de datos.
-                            </dd>
+                            <!-- Contenedor para la tercera tecnología -->
+                            <div class="mb-4">
+                                <h5>SQL</h5>
+                                <div class="progress" role="progressbar" style="height: 25px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 90%">Competente (90%)</div>
+                                </div>
+                                <p class="text-white-50 mt-2 small">
+                                    Conocimiento en SQL para la gestión y manipulación de información en bases de datos relacionales, incluyendo consultas, inserciones y actualizaciones.
+                                </p>
+                            </div>
 
-                            <dt>Docker</dt>
-                            <dd>
-                                Uso de Docker para crear, desplegar y ejecutar aplicaciones en contenedores. Esta tecnología permite empaquetar una aplicación con todas sus dependencias, asegurando que funcione de manera consistente en cualquier entorno de desarrollo o producción.
-                            </dd>
+                            <!-- Contenedor para la cuarta tecnología -->
+                            <div class="mb-4">
+                                <h5>Docker</h5>
+                                <div class="progress" role="progressbar" style="height: 25px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 80%">Intermedio (80%)</div>
+                                </div>
+                                <p class="text-white-50 mt-2 small">
+                                    Uso de Docker para crear, desplegar y ejecutar aplicaciones en contenedores, asegurando la consistencia del entorno de desarrollo y producción.
+                                </p>
+                            </div>
 
-                            <dt>Microcontroladores</dt>
-                            <dd>
-                                Familiarizado con la programación de microcontroladores, que son esencialmente una computadora en un solo chip diseñados para gestionar tareas específicas. Experiencia en la automatización de procesos y el control de elementos de entrada/salida en sistemas embebidos.
-                            </dd>
-                        </dl>
+                            <!-- Contenedor para la quinta tecnología -->
+                            <div> <!-- Quitamos mb-4 del último elemento para un espaciado perfecto -->
+                                <h5>Microcontroladores</h5>
+                                <div class="progress" role="progressbar" style="height: 25px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%">Intermedio (75%)</div>
+                                </div>
+                                <p class="text-white-50 mt-2 small">
+                                    Familiarizado con la programación de microcontroladores para la automatización de procesos y el control de elementos de entrada/salida en sistemas embebidos.
+                                </p>
+                            </div>
+
+                        </div>
+                    </section>
             </div>
         </section>
 
 
     </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+            // Seleccionamos el botón y el body una sola vez
+            const downloadButton = document.getElementById('download-btn');
+            const bodyElement = document.body;
 
+            function generatePDF() {
+                // 1. AÑADIMOS LA CLASE para aplicar los estilos de PDF
+                bodyElement.classList.add('pdf-view');
+
+                const opt = {
+                margin:       0.5,
+                filename:     'CV-Jonatan-Aguilar.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true }, // useCORS es bueno para imágenes externas
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+
+                // Mostramos el toast justo antes de guardar
+                const toastLiveExample = document.getElementById('downloadToast');
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                toastBootstrap.show();
+
+                // 2. GENERAMOS EL PDF desde el body (que ahora tiene los estilos correctos)
+                html2pdf().set(opt).from(bodyElement).save().then(() => {
+                    // 3. QUITAMOS LA CLASE para devolver la página a la normalidad,
+                    //    una vez que el PDF se ha guardado.
+                    bodyElement.classList.remove('pdf-view');
+                });
+            }
+
+            // Añadimos el listener al botón
+            downloadButton.addEventListener('click', generatePDF);
+    </script>
 </body>
 </html>
 

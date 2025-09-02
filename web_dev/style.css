@@ -39,24 +39,14 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ======================================= */
-/*          HEADER CORREGIDO               */
-/* ======================================= */
-
-/* 1. Contenedor Principal del Header */
+/* 1. Contenedor Principal del Header; modificado para usar bootstrap */
 header {
     position: relative; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* Padding reducido para dar más espacio en móviles */
     padding: 3rem 1rem; 
     min-height: 300px;
-    overflow: hidden; /* Muy importante para que nada se desborde */
+    overflow: hidden; 
 }
 
-/* El GIF de fondo no necesita cambios */
 header::before {
     content: '';
     position: absolute;
@@ -75,46 +65,39 @@ header::before {
     flex-direction: column; 
     align-items: center;
     gap: 1.5rem; 
-    /* Salvaguarda para que nunca sea más ancho que la pantalla */
     max-width: 100%;
 }
 
 /* 3. Contenedor del Texto (Nombre, Título, Nav) */
 .header-text {
-    /* LA SOLUCIÓN CLAVE: Le decimos a este contenedor que su contenido DEBE ajustarse */
     overflow-wrap: break-word;
-    word-wrap: break-word; /* Compatibilidad con navegadores antiguos */
-    width: 100%; /* Le decimos que ocupe todo el ancho disponible */
+    word-wrap: break-word;
+    width: 100%;
 }
 
-/* La foto de perfil no necesita cambios */
 .profile-photo {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-    border: 4px solid var(--primary-color);
     object-fit: cover;
 }
 
-/* Los estilos de la navegación no necesitan cambios */
 header nav {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     margin-top: 1rem;
-    /* Añadimos esto para que los enlaces también se ajusten si es necesario */
     flex-wrap: wrap; 
 }
 
 /* Estructura del Main con CSS Grid */
 main {
     display: grid;
-    grid-template-columns: 1fr; /* Una columna por defecto */
+    grid-template-columns: 1fr;
     gap: 2rem;
     padding: 2rem;
     max-width: 1000px;
-    margin: 0 auto; /* Centra el contenido principal */
+    margin: 0 auto;
 }
 
 /* Estilo de las Tarjetas */
@@ -122,10 +105,8 @@ main {
     padding: 2rem;
     border-radius: 10px;
     
-    /* Punto 4: Degradado estático (alternativa CSS) */
     background: linear-gradient(145deg, #1a6659, #0bd7e6);
     
-    /* Punto 2: Animación de entrada */
     opacity: 0;
     transform: translateY(30px);
     animation: fadeIn 0.8s ease-out forwards;
@@ -135,7 +116,6 @@ main {
 .card:nth-child(2) { animation-delay: 0.2s; }
 .card:nth-child(3) { animation-delay: 0.4s; }
 .card:nth-child(4) { animation-delay: 0.6s; }
-/* ... y así sucesivamente si tienes más tarjetas */
 
 #habilidades .card:nth-of-type(2) { animation-delay: 0.8s; }
 #habilidades .card:nth-of-type(3) { animation-delay: 1s; }
@@ -147,14 +127,6 @@ main {
         transform: translateY(0);
     }
 }
-
-/* Punto 1: Colores de fondo por sección (opcional si usas tarjetas) */
-/* Puedes descomentar esto si prefieres fondos de sección en lugar de tarjetas */
-/*
-#educacion { background-color: #252525; }
-#experiencia { background-color: #282828; }
-#habilidades { background-color: #2b2b2b; }
-*/
 
 table {
     width: 100%;
@@ -170,18 +142,18 @@ th, td {
 
 /* --- Aplicación de Flexbox en la Navegación --- */
 header nav {
-    display: flex;            /* ¡Activamos Flexbox! */
-    justify-content: center;  /* Centra los enlaces horizontalmente */
-    align-items: center;      /* Centra los enlaces verticalmente (buena práctica) */
-    gap: 1.5rem;              /* Crea un espacio de 1.5rem ENTRE cada enlace */
-    margin-top: 1rem;         /* Añade un poco de espacio sobre la barra de navegación */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
 }
 
 main {
-    display: flex;             /* Usamos Flexbox para una sola columna */
-    flex-direction: column;    /* Apila los elementos verticalmente */
-    gap: 1.5rem;               /* Espacio entre tarjetas en móvil */
-    padding: 1.5rem 1rem;      /* Menos padding en los lados */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -193,22 +165,17 @@ main {
     gap: 1.5rem; /* Espacio entre las tarjetas DENTRO de cada columna */
 }
 
-/* --- Media Queries para Responsividad --- */
 
-/* ======================================= */
-/*          VISTA TABLET (768px y más)     */
-/* ======================================= */
 @media (min-width: 768px) {
     
     /* Cuando la pantalla es de 768px o más, main SE CONVIERTE en un Grid */
     main {
         display: grid;
-        grid-template-columns: 1fr 2.5fr; /* ¡Nuestras dos columnas VUELVEN! */
+        grid-template-columns: 1fr 2.5fr;
         gap: 2rem;
         padding: 2rem;
     }
 
-    /* Opcional: Alinear la foto y el texto del header en fila */
     .header-content {
         flex-direction: row;
         text-align: left;
@@ -219,18 +186,72 @@ main {
     }
 }
 
-/* ======================================= */
-/*          VISTA DESKTOP (1024px y más)   */
-/* ======================================= */
 @media (min-width: 1024px) {
 
-    /* Refinamos el grid para tener una barra lateral de ancho fijo */
     main {
         grid-template-columns: 300px 1fr; 
     }
 
-    /* Aumentamos un poco la fuente para mejor legibilidad */
     body {
         font-size: 17px;
     }
+}
+
+/* Cuando el body tenga la clase .pdf-view, se aplican estas reglas generales */
+.pdf-view {
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 12pt !important;
+}
+
+/* Ocultar elementos innecesarios en la vista PDF */
+.pdf-view header::before,
+.pdf-view #download-btn {
+    display: none !important;
+}
+
+/* Re-estilizar Secciones y Componentes en la vista PDF */
+.pdf-view .card {
+    background: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+    /* Quitamos la animación para el PDF */
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.pdf-view h1, .pdf-view h2, .pdf-view h3, .pdf-view a {
+    color: #000 !important;
+}
+
+.pdf-view header {
+    background-color: #f0f0f0 !important;
+    border-bottom: 2px solid #ccc !important;
+}
+
+.pdf-view .profile-photo {
+    border-color: #000 !important;
+}
+
+/* Corregir el Layout en la vista PDF */
+.pdf-view main, .pdf-view .sidebar, .pdf-view .main-content {
+    display: block !important;
+    width: 100% !important;
+}
+
+.pdf-view .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Corregir las tablas de Bootstrap para la vista PDF */
+.pdf-view .table, .pdf-view .table-dark {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+.pdf-view .table > :not(caption) > * > * {
+    background-color: inherit !important;
 }
