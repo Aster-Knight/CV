@@ -34,6 +34,18 @@
         </div>
     </nav>
 
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="downloadToast" class="toast" role="alert">
+            <div class="toast-header">
+            <strong class="me-auto">Notificación</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+            La descarga del CV ha comenzado.
+            </div>
+        </div>
+    </div>
+
     <header class="d-flex justify-content-center align-items-center">
 
     <div class="header-content text-center">
@@ -213,6 +225,11 @@
                 html2canvas:  { scale: 2, useCORS: true }, // useCORS es bueno para imágenes externas
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
                 };
+
+                // Mostramos el toast justo antes de guardar
+                const toastLiveExample = document.getElementById('downloadToast');
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                toastBootstrap.show();
 
                 // 2. GENERAMOS EL PDF desde el body (que ahora tiene los estilos correctos)
                 html2pdf().set(opt).from(bodyElement).save().then(() => {
