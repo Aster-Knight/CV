@@ -52,7 +52,6 @@
     </div>
 
     <header class="d-flex justify-content-center align-items-center">
-
     <div class="header-content">
 
         <!-- Columna 1: Saludo Dinámico -->
@@ -67,7 +66,7 @@
         </div>
 
         <!-- 3. NUEVO GRUPO para la foto y la info de contacto -->
-    <div class="profile-group d-flex flex-column flex-md-row align-items-center">
+        <div class="profile-group d-flex flex-column flex-md-row align-items-center">
 
             <div class="profile-picture-container">
                 <picture>
@@ -104,11 +103,12 @@
     </div>
 
         <!-- Columna 3: Nuevos Botones de Acción -->
-    <div class="action-buttons-container d-flex flex-column gap-3">
-        <button id="toggle-experience-btn" class="btn btn-primary"><i class="bi bi-patch-check-fill me-2"></i> Experiencia</button>
-        <button id="toggle-contact-btn" class="btn btn-info"><i class="bi bi-person-lines-fill me-2"></i> Contacto Detallado</button>
-        <button id="toggle-theme-btn" class="btn btn-secondary"><i class="bi bi-sun-fill me-2"></i> Modo Claro</button>
-    </div>
+        <div class="action-buttons-container d-flex flex-column gap-3">
+            <button id="toggle-experience-btn" class="btn btn-primary"><i class="bi bi-patch-check-fill me-2"></i> Experiencia</button>
+            <button id="toggle-contact-btn" class="btn btn-info"><i class="bi bi-person-lines-fill me-2"></i> Contacto Detallado</button>
+            <button id="toggle-theme-btn" class="btn btn-secondary"><i class="bi bi-sun-fill me-2"></i> Modo Claro</button>
+        </div>
+
     </header>
 
     <main>
@@ -175,7 +175,8 @@
             </div>
 
         </section>
-                <section id="experiencia" class="card">
+
+        <section id="experiencia" class="card">
                             <h2>Experiencia Laboral</h2>
                             <table class="experience-table">
                                 <caption>Resumen de mi experiencia profesional y en proyectos</caption>
@@ -262,233 +263,16 @@
                             </div>
 
                         </div>
-                    </section>
-            </div>
         </section>
+    </div>
+    </section>
 
 
     </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-            const bodyElement = document.body;
-
-
-            const downloadButton = document.getElementById('download-btn');
-            function generatePDF() {
-                // 1. Guardamos el estado actual de la foto de perfil
-                const currentPhotoSrc = profilePhoto.src;
-
-                // 2. FORZAMOS el estado deseado para el PDF
-                profilePhoto.src = minimalPhotoSrc; // Siempre usa la foto "formal"
-                bodyElement.classList.add('pdf-view'); // Activa los estilos de impresión
-
-                // Opciones del PDF (sin cambios)
-                const opt = {
-                margin: 0.5, filename: 'CV-Jonatan-Aguilar.pdf', image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-                };
-
-                // Generamos y guardamos el PDF
-                html2pdf().set(opt).from(bodyElement).save().then(() => {
-                    // 3. RESTAURAMOS la página a su estado original una vez terminado
-                    bodyElement.classList.remove('pdf-view');
-                    profilePhoto.src = currentPhotoSrc; // Devuelve la foto que estaba antes
-                });
-            }
-            downloadButton.addEventListener('click', generatePDF);
-
-        // 1. Seleccionamos los elementos del HTML donde mostraremos la información
-        const greetingElement = document.getElementById('greeting-text');
-        const timeElement = document.getElementById('current-time');
-        const dateElement = document.getElementById('current-date');
-
-        // 2. Creamos una función para actualizar todo
-        function updateDynamicGreeting() {
-            // Seleccionamos el nuevo elemento del icono
-            const greetingIcon = document.getElementById('greeting-icon');
-            const now = new Date();
-            const hours = now.getHours();
-
-            let greeting;
-            let iconClass; // Variable para guardar la clase del icono
-
-            // Lógica para el saludo Y EL ICONO
-            if (hours < 12) {
-                greeting = 'Buenos días';
-                iconClass = 'bi bi-brightness-high-fill text-warning'; // Icono de sol
-            } else if (hours < 19) {
-                greeting = 'Buenas tardes';
-                iconClass = 'bi bi-sunset-fill text-info'; // Icono de atardecer
-            } else {
-                greeting = 'Buenas noches';
-                iconClass = 'bi bi-moon-stars-fill text-light'; // Icono de luna
-            }
-
-            // Formateo de hora y fecha (sin cambios)
-            const currentHours = now.getHours().toString().padStart(2, '0');
-            const currentMinutes = now.getMinutes().toString().padStart(2, '0');
-            const timeString = `${currentHours}:${currentMinutes}`;
-            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateString = now.toLocaleDateString('es-ES', dateOptions);
-
-            // Actualizamos el contenido en el HTML, incluyendo el icono
-            greetingElement.textContent = greeting;
-            timeElement.textContent = timeString;
-            dateElement.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-            greetingIcon.className = iconClass; // Aplicamos la clase del icono
-        }
-
-        // 4. Hacemos que la función se ejecute cada segundo para que el reloj avance
-        setInterval(updateDynamicGreeting, 1000);
-
-        // 5. La ejecutamos una vez al cargar la página para que no haya un retraso de 1 segundo
-        updateDynamicGreeting();
-
-        // --- SCRIPT PARA EL BOTÓN DE EXPERIENCIA ---
-
-        // 1. Seleccionamos los elementos necesarios del HTML
-        const toggleExperienceBtn = document.getElementById('toggle-experience-btn');
-        const experienceSection = document.getElementById('experiencia');
-        // Seleccionamos el icono DENTRO del botón para poder cambiarlo
-        const experienceIcon = toggleExperienceBtn.querySelector('i');
-
-        // 2. Creamos la función que se ejecutará al hacer clic
-        function toggleExperience() {
-            // Alternamos (añadimos/quitamos) la clase .section-hidden en la tarjeta de experiencia
-            experienceSection.classList.toggle('section-hidden');
-
-            // 3. Revisamos si la sección está oculta ahora para cambiar el icono
-            if (experienceSection.classList.contains('section-hidden')) {
-                // Si ESTÁ oculta, cambiamos al icono de "añadir" o "mostrar"
-                experienceIcon.className = 'bi bi-patch-plus-fill me-2';
-            } else {
-                // Si NO está oculta (está visible), volvemos al icono de "check" o "activo"
-                experienceIcon.className = 'bi bi-patch-check-fill me-2';
-            }
-        }
-
-        // 4. Conectamos la función al evento 'click' del botón
-        toggleExperienceBtn.addEventListener('click', toggleExperience);
-
-                // 1. Seleccionamos los elementos necesarios
-        const toggleContactBtn = document.getElementById('toggle-contact-btn');
-        const headerText = document.querySelector('.header-text'); // Contenedor de la info
-        const profilePhoto = document.querySelector('.profile-photo'); // La imagen
-        const contactIcon = toggleContactBtn.querySelector('i'); // El icono del botón
-
-        // 2. Guardamos las rutas de las dos imágenes
-        const originalPhotoSrc = 'cv foto.webp';
-        const minimalPhotoSrc = 'profile_black.webp';
-
-        // 3. Creamos la función que se ejecutará al hacer clic
-        function toggleContactView() {
-            // Alternamos la clase .minimal-view en el contenedor del texto
-            headerText.classList.toggle('minimal-view');
-
-            // 4. Verificamos el estado actual para cambiar la foto y el botón
-            if (headerText.classList.contains('minimal-view')) {
-                // Si ESTÁ en modo minimalista:
-                // Cambiamos la imagen a la versión en blanco y negro
-                profilePhoto.src = minimalPhotoSrc;
-                // Cambiamos el botón para que invite a mostrar los detalles
-                contactIcon.className = 'bi bi-person-fill me-2';
-                toggleContactBtn.childNodes[2].nodeValue = ' Contacto Básico'; // Cambia el texto
-            } else {
-                // Si NO está en modo minimalista (está detallado):
-                // Volvemos a la imagen original
-                profilePhoto.src = originalPhotoSrc;
-                // Volvemos al botón original
-                contactIcon.className = 'bi bi-person-lines-fill me-2';
-                toggleContactBtn.childNodes[2].nodeValue = ' Contacto Detallado'; // Cambia el texto
-            }
-        }
-
-        // 5. Conectamos la función al evento 'click' del botón
-        toggleContactBtn.addEventListener('click', toggleContactView);
-
-        // --- SCRIPT PARA EL BOTÓN DE TEMA (MODO CLARO/OSCURO) ---
-
-        // 1. Seleccionamos los elementos necesarios
-        const toggleThemeBtn = document.getElementById('toggle-theme-btn');
-        // La foto de perfil ya la seleccionamos en el script anterior, podemos reutilizar la variable `profilePhoto`
-        const themeIcon = toggleThemeBtn.querySelector('i');
-
-        // 2. Creamos la función que alternará el tema
-        function toggleTheme() {
-            // Alternamos la clase .light-mode en el elemento <body>
-            bodyElement.classList.toggle('light-mode');
-
-            // 3. Verificamos el estado actual para cambiar la foto y el botón
-            if (bodyElement.classList.contains('light-mode')) {
-                // Si ESTÁ en modo claro:
-                // Cambiamos la imagen a la versión "formal"
-                profilePhoto.src = minimalPhotoSrc; // Reutilizamos la variable del script anterior
-                // Cambiamos el botón para que invite a volver al modo oscuro
-                themeIcon.className = 'bi bi-moon-stars-fill me-2';
-                toggleThemeBtn.childNodes[2].nodeValue = ' Modo Oscuro';
-            } else {
-                // Si NO está en modo claro (está en modo oscuro):
-                // Volvemos a la imagen original
-                profilePhoto.src = originalPhotoSrc; // Reutilizamos la variable del script anterior
-                // Volvemos al botón original
-                themeIcon.className = 'bi bi-sun-fill me-2';
-                toggleThemeBtn.childNodes[2].nodeValue = ' Modo Claro';
-            }
-        }
-
-        // 4. Conectamos la función al evento 'click' del botón
-        toggleThemeBtn.addEventListener('click', toggleTheme);
-
-        // --- 7. FUNCIONALIDAD: BUSCADOR DE HABILIDADES (VERSIÓN MEJORADA) ---
-        const searchInput = document.getElementById('skill-search-input');
-        const allFilterableElements = document.querySelectorAll('.filterable-skill, .skill-container');
-
-        function filterSkills() {
-            const searchTerm = searchInput.value.toLowerCase();
-
-            allFilterableElements.forEach(element => {
-                // Caso 1: Es un contenedor con items internos (como los badges)
-                if (element.classList.contains('skill-container')) {
-                    const items = element.querySelectorAll('.filterable-item');
-                    let hasVisibleItem = false;
-
-                    // Filtramos los items internos
-                    items.forEach(item => {
-                        if (item.textContent.toLowerCase().includes(searchTerm)) {
-                            item.classList.remove('hidden-skill');
-                            hasVisibleItem = true; // Encontramos al menos una coincidencia
-                        } else {
-                            item.classList.add('hidden-skill');
-                        }
-                    });
-
-                    // Ocultamos el contenedor COMPLETO solo si NINGÚN item es visible
-                    if (hasVisibleItem) {
-                        element.classList.remove('hidden-skill');
-
-                    } else {
-                        element.classList.add('hidden-skill');
-                    }
-                } 
-                // Caso 2: Es una habilidad simple (como las tarjetas de Soft Skills o Tecnologías)
-                else {
-                    const elementText = element.textContent.toLowerCase();
-                    if (elementText.includes(searchTerm)) {
-                        element.classList.remove('hidden-skill');
-                    } else {
-                        element.classList.add('hidden-skill');
-                    }
-                }
-            });
-        }
-
-        searchInput.addEventListener('input', filterSkills);
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
-
-
-

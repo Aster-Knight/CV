@@ -1,7 +1,12 @@
-/* Importar una fuente desde Google Fonts */
+/* ==========================================================================
+   CV de Jonatan Aguilar - Hoja de Estilos Principal
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Imports & Root Variables
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
-/* Definir paleta de colores y variables globales */
 :root {
     --bg-color: #1a1a1a;
     --card-color: #2c2c2c;
@@ -11,7 +16,10 @@
     --font-main: 'Lato', sans-serif;
 }
 
-/* Estilos base y reseteo */
+
+/* ==========================================================================
+   2. General Resets & Body Styles
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -25,6 +33,10 @@ body {
     line-height: 1.6;
 }
 
+
+/* ==========================================================================
+   3. Base Element Styles
+   ========================================================================== */
 h1, h2, h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
@@ -39,12 +51,27 @@ a:hover {
     text-decoration: underline;
 }
 
-/* 1. Contenedor Principal del Header; modificado para usar bootstrap */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   4. Layout Styles (Estructura Principal)
+   ========================================================================== */
 header {
-    position: relative; 
-    padding: 3rem 1rem; 
+    position: relative;
+    padding: 3rem 1rem;
     min-height: 300px;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 header::before {
@@ -59,11 +86,27 @@ header::before {
     z-index: -1;
 }
 
-/* 2. Contenedor del Contenido (Foto + Texto) */
-/* --- Nuevo Layout de Grid para el Header --- */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+.sidebar, .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+/* ==========================================================================
+   5. Component Styles
+   ========================================================================== */
+/* --- Header Components --- */
 .header-content {
-    /* Por defecto (móvil) es un flexbox en columna */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,41 +114,6 @@ header::before {
     width: 100%;
 }
 
-/* En pantallas de tablet y más grandes, SE CONVIERTE EN UN GRID */
-@media (min-width: 768px) {
-    .header-content {
-        display: grid;
-        /* Definimos 3 columnas: saludo (auto), perfil (flexible), botones (auto) */
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 2rem;
-    }
-}
-
-/* Estilos para el grupo de perfil y los separadores */
-.profile-group {
-    gap: 1.5rem; /* Espacio entre la foto y el texto */
-}
-
-/* Creamos los separadores con bordes, solo en la vista de escritorio */
-@media (min-width: 768px) {
-    .profile-group {
-        /* Borde izquierdo (separador 1) */
-        border-left: 2px solid rgba(255, 255, 255, 0.2);
-        padding-left: 2rem;
-        /* Borde derecho (separador 2) */
-        border-right: 2px solid rgba(255, 255, 255, 0.2);
-        padding-right: 2rem;
-    }
-}
-
-/* Contenedor de los botones de acción */
-.action-buttons-container {
-    width: 100%; /* En móvil ocupan todo el ancho */
-    max-width: 250px; /* Un ancho máximo para que no se estiren demasiado */
-}
-
-/* 3. Contenedor del Texto (Nombre, Título, Nav) */
 .header-text {
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -124,39 +132,35 @@ header nav {
     align-items: center;
     gap: 1.5rem;
     margin-top: 1rem;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
-/* Estructura del Main con CSS Grid */
-main {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
+.dynamic-greeting-container {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-/* Estilo de las Tarjetas */
+.separator-line {
+    width: 2px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.action-buttons-container {
+    width: 100%;
+    max-width: 250px;
+}
+
+/* --- Card Component --- */
 .card {
     padding: 2rem;
     border-radius: 10px;
-    
     background: linear-gradient(145deg, #1a6659, #0bd7e6);
-    
     opacity: 0;
     transform: translateY(30px);
     animation: fadeIn 0.8s ease-out forwards;
 }
-
-/* Para que las tarjetas no aparezcan todas a la vez */
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.4s; }
-.card:nth-child(4) { animation-delay: 0.6s; }
-
-#habilidades .card:nth-of-type(2) { animation-delay: 0.8s; }
-#habilidades .card:nth-of-type(3) { animation-delay: 1s; }
-
 
 @keyframes fadeIn {
     to {
@@ -165,220 +169,50 @@ main {
     }
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
-
-th, td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--text-secondary);
-}
-
-/* --- Aplicación de Flexbox en la Navegación --- */
-header nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* También le decimos a los contenedores internos que se comporten como columnas */
-.sidebar, .main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem; /* Espacio entre las tarjetas DENTRO de cada columna */
+/* --- Filterable Skill Component --- */
+.filterable-skill {
+    transition: all 0.4s ease-out;
 }
 
 
-@media (min-width: 768px) {
-    
-    /* Cuando la pantalla es de 768px o más, main SE CONVIERTE en un Grid */
-    main {
-        display: grid;
-        grid-template-columns: 1fr 2.5fr;
-        gap: 2rem;
-        padding: 2rem;
-    }
-
-    .header-content {
-        flex-direction: row;
-        text-align: left;
-    }
-
-    .header-text {
-        margin-left: 2rem;
-    }
-}
-
-@media (min-width: 1024px) {
-
-    main {
-        grid-template-columns: 300px 1fr; 
-    }
-
-    body {
-        font-size: 17px;
-    }
-}
-
-/* Cuando el body tenga la clase .pdf-view, se aplican estas reglas generales */
-body.pdf-view {
-    background-color: #fff !important;
-    color: #000 !important;
-    font-size: 12pt !important;
-}
-
-/* --- 1. Ocultar Elementos Dinámicos e Innecesarios --- */
-body.pdf-view #dynamic-greeting, /* Oculta el saludo dinámico */
-body.pdf-view #main-navbar,      /* Oculta el navbar principal */
-body.pdf-view header::before,   /* Oculta el GIF de fondo */
-body.pdf-view #download-btn,    /* Oculta el botón de descarga */
-body.pdf-view .action-buttons-container { /* Oculta la columna de botones */
-    display: none !important;
-}
-
-/* --- 2. Re-estilizar las Barras de Progreso para que sean estáticas --- */
-body.pdf-view .progress {
-    background-color: #e9ecef !important; /* Un fondo gris claro para la barra vacía */
-    border: 1px solid #ccc;
-}
-
-body.pdf-view .progress-bar {
-    background-image: none !important; /* Elimina las rayas */
-    animation: none !important;         /* Detiene la animación */
-    background-color: #495057 !important; /* Un color de relleno sólido y oscuro */
-    color: #fff !important; /* Asegura que el texto dentro sea blanco y legible */
-}
-
-/* Re-estilizar Secciones y Componentes en la vista PDF */
-.pdf-view .card {
-    background: none !important;
-    box-shadow: none !important;
-    border: 1px solid #ccc !important;
-    page-break-inside: avoid;
-    /* Quitamos la animación para el PDF */
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-}
-
-.pdf-view h1, .pdf-view h2, .pdf-view h3, .pdf-view a {
-    color: #000 !important;
-}
-
-.pdf-view header {
-    background-color: #f0f0f0 !important;
-    border-bottom: 2px solid #ccc !important;
-}
-
-.pdf-view .profile-photo {
-    border-color: #000 !important;
-}
-
-/* Corregir el Layout en la vista PDF */
-.pdf-view main, .pdf-view .sidebar, .pdf-view .main-content {
-    display: block !important;
-    width: 100% !important;
-}
-
-.pdf-view .container {
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-/* Corregir las tablas de Bootstrap para la vista PDF */
-.pdf-view .table, .pdf-view .table-dark {
-    background-color: #fff !important;
-    color: #000 !important;
-}
-.pdf-view .table > :not(caption) > * > * {
-    background-color: inherit !important;
-}
-
-/* --- Estilos para el Saludo Dinámico --- */
-
-.dynamic-greeting-container {
-    text-align: center;
-    /* Un pequeño margen inferior en móviles para separarlo de la foto */
-    margin-bottom: 2rem; 
-}
-
-/* En pantallas de tablet y más grandes, quitamos el margen inferior
-   y añadimos un margen a la derecha para separarlo de la foto */
-@media (min-width: 768px) {
-    .dynamic-greeting-container {
-        text-align: left; /* Alineamos a la izquierda en escritorio */
-        margin-bottom: 0;
-        margin-right: 2rem;
-    }
-}
-
-.separator-line {
-    width: 2px; /* Grosor de la línea */
-    height: 120px; /* Altura de la línea */
-    background-color: rgba(255, 255, 255, 0.2); /* Color semi-transparente */
-    border-radius: 2px;
-}
-
-#experiencia.card {
-    transition: all 0.5s ease-in-out;
-}
-
-/* Esta es la clase que añadiremos con JS para ocultar la sección */
-.section-hidden {
+/* ==========================================================================
+   6. State & Theme Modifiers
+   ========================================================================== */
+/* --- State: Hidden Elements --- */
+.section-hidden,
+.hidden-skill {
     opacity: 0;
     max-height: 0;
-    padding-top: 0 !important; /* Usamos !important para sobrescribir las utilidades de Bootstrap si es necesario */
+    padding-top: 0 !important;
     padding-bottom: 0 !important;
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
-    overflow: hidden; /* Oculta el contenido mientras se colapsa */
+    overflow: hidden;
     border: none !important;
 }
 
-/* Transición suave para los enlaces de contacto */
 #contact-links {
     transition: opacity 0.4s ease-out, max-height 0.4s ease-out;
     overflow: hidden;
 }
 
-/* Cuando el header-text tenga la clase .minimal-view, se ocultan los enlaces */
 .minimal-view #contact-links {
     opacity: 0;
     max-height: 0;
     margin-top: 0 !important;
 }
 
-/* ==========================================================================
-   TEMA CLARO (LIGHT MODE) - Activado con JavaScript
-   ========================================================================== */
-
-/* Cuando el body tenga la clase .light-mode, se aplican estas reglas */
+/* --- Theme: Light Mode --- */
 body.light-mode {
-    background-color: #f8f9fa !important; /* Un gris muy claro de Bootstrap */
-    color: #212529 !important;            /* Texto casi negro de Bootstrap */
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
 }
 
-/* --- Ocultar Elementos Dinámicos --- */
 body.light-mode #dynamic-greeting,
 body.light-mode header::before {
     display: none !important;
 }
 
-/* --- Detener Animaciones --- */
 body.light-mode .progress-bar-animated,
 body.light-mode .card {
     animation: none !important;
@@ -386,29 +220,27 @@ body.light-mode .card {
     transform: none !important;
 }
 
-/* --- Re-estilizar Componentes Principales --- */
 body.light-mode .card {
     background: #ffffff !important;
-    border: 1px solid #dee2e6 !important; /* Borde sutil de Bootstrap */
+    border: 1px solid #dee2e6 !important;
 }
 
 body.light-mode h1, body.light-mode h2, body.light-mode h3 {
-    color: #007bff !important; /* Un azul primario para los títulos */
+    color: #007bff !important;
 }
 
 body.light-mode a {
-    color: #0056b3 !important; /* Un azul más oscuro para los enlaces */
+    color: #0056b3 !important;
 }
 
 body.light-mode header {
-    background-color: #e9ecef !important; /* Un fondo gris claro para el header */
+    background-color: #e9ecef !important;
 }
 
 body.light-mode .profile-photo {
-    border-color: #007bff !important; /* Borde de la foto en azul */
+    border-color: #007bff !important;
 }
 
-/* --- Re-estilizar Botones y Separadores --- */
 body.light-mode .btn-outline-light {
     color: #212529 !important;
     border-color: #212529 !important;
@@ -422,21 +254,120 @@ body.light-mode .separator-line {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-/* --- Estilos para el Filtro de Habilidades --- */
-
-/* Transición suave para todos los elementos filtrables */
-.filterable-skill {
-    transition: all 0.4s ease-out;
+/* --- Theme: PDF View (Print Styles) --- */
+body.pdf-view {
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 12pt !important;
 }
 
-/* Clase que oculta los elementos que no coinciden con la búsqueda */
-.hidden-skill {
-    opacity: 0;
-    max-height: 0;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    overflow: hidden;
-    border: none !important;
+body.pdf-view #dynamic-greeting,
+body.pdf-view #main-navbar,
+body.pdf-view header::before,
+body.pdf-view #download-btn,
+body.pdf-view .action-buttons-container {
+    display: none !important;
+}
+
+body.pdf-view .progress {
+    background-color: #e9ecef !important;
+    border: 1px solid #ccc;
+}
+
+body.pdf-view .progress-bar {
+    background-image: none !important;
+    animation: none !important;
+    background-color: #495057 !important;
+    color: #fff !important;
+}
+
+body.pdf-view .card {
+    background: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+body.pdf-view h1, body.pdf-view h2, body.pdf-view h3, body.pdf-view a {
+    color: #000 !important;
+}
+
+body.pdf-view header {
+    background-color: #f0f0f0 !important;
+    border-bottom: 2px solid #ccc;
+}
+
+body.pdf-view .profile-photo {
+    border-color: #000 !important;
+}
+
+body.pdf-view main, .pdf-view .sidebar, .pdf-view .main-content {
+    display: block !important;
+    width: 100% !important;
+}
+
+body.pdf-view .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body.pdf-view .table, .pdf-view .table-dark {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+body.pdf-view .table > :not(caption) > * > * {
+    background-color: inherit !important;
+}
+
+
+/* ==========================================================================
+   7. Media Queries (Responsive Design)
+   ========================================================================== */
+/* --- Tablet View (768px y más) --- */
+@media (min-width: 768px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr 2.5fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .header-content {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .header-text {
+        margin-left: 2rem;
+    }
+
+    .dynamic-greeting-container {
+        text-align: left;
+        margin-bottom: 0;
+        margin-right: 2rem;
+    }
+
+    .profile-group {
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+        padding-left: 2rem;
+        border-right: 2px solid rgba(255, 255, 255, 0.2);
+        padding-right: 2rem;
+    }
+}
+
+/* --- Desktop View (1024px y más) --- */
+@media (min-width: 1024px) {
+    body {
+        font-size: 17px;
+    }
+
+    main {
+        grid-template-columns: 300px 1fr;
+    }
 }
