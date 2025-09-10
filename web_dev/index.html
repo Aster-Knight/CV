@@ -100,8 +100,14 @@
 
         <!-- Columna 3: Nuevos Botones de Acción -->
     <div class="action-buttons-container d-flex flex-column gap-3">
-        <button class="btn btn-primary"><i class="bi bi-briefcase-fill me-2"></i> Portafolio</button>
+        <!-- 1. BOTÓN DE EXPERIENCIA (MODIFICADO) -->
+        <button id="toggle-experience-btn" class="btn btn-primary">
+            <!-- El icono inicial muestra que está ACTIVO -->
+            <i class="bi bi-patch-check-fill me-2"></i> Experiencia
+        </button>
+
         <button class="btn btn-info"><i class="bi bi-chat-dots-fill me-2"></i> Blog</button>
+        
         <button class="btn btn-secondary"><i class="bi bi-telephone-fill me-2"></i> Contacto Rápido</button>
     </div>
     </header>
@@ -345,6 +351,32 @@
 
         // 5. La ejecutamos una vez al cargar la página para que no haya un retraso de 1 segundo
         updateDynamicGreeting();
+
+        // --- SCRIPT PARA EL BOTÓN DE EXPERIENCIA ---
+
+        // 1. Seleccionamos los elementos necesarios del HTML
+        const toggleExperienceBtn = document.getElementById('toggle-experience-btn');
+        const experienceSection = document.getElementById('experiencia');
+        // Seleccionamos el icono DENTRO del botón para poder cambiarlo
+        const experienceIcon = toggleExperienceBtn.querySelector('i');
+
+        // 2. Creamos la función que se ejecutará al hacer clic
+        function toggleExperience() {
+            // Alternamos (añadimos/quitamos) la clase .section-hidden en la tarjeta de experiencia
+            experienceSection.classList.toggle('section-hidden');
+
+            // 3. Revisamos si la sección está oculta ahora para cambiar el icono
+            if (experienceSection.classList.contains('section-hidden')) {
+                // Si ESTÁ oculta, cambiamos al icono de "añadir" o "mostrar"
+                experienceIcon.className = 'bi bi-patch-plus-fill me-2';
+            } else {
+                // Si NO está oculta (está visible), volvemos al icono de "check" o "activo"
+                experienceIcon.className = 'bi bi-patch-check-fill me-2';
+            }
+        }
+
+        // 4. Conectamos la función al evento 'click' del botón
+        toggleExperienceBtn.addEventListener('click', toggleExperience);
     </script>
 
 </body>

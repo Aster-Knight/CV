@@ -317,3 +317,18 @@ main {
     background-color: rgba(255, 255, 255, 0.2); /* Color semi-transparente */
     border-radius: 2px;
 }
+
+#experiencia.card {
+    transition: all 0.5s ease-in-out;
+}
+
+/* Esta es la clase que añadiremos con JS para ocultar la sección */
+.section-hidden {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0 !important; /* Usamos !important para sobrescribir las utilidades de Bootstrap si es necesario */
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: hidden; /* Oculta el contenido mientras se colapsa */
+    border: none !important;
+}
