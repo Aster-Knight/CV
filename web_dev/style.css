@@ -421,3 +421,22 @@ body.light-mode .btn-outline-light:hover {
 body.light-mode .separator-line {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
+
+/* --- Estilos para el Filtro de Habilidades --- */
+
+/* Transición suave para todos los elementos filtrables */
+.filterable-skill {
+    transition: all 0.4s ease-out;
+}
+
+/* Clase que oculta los elementos que no coinciden con la búsqueda */
+.hidden-skill {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: hidden;
+    border: none !important;
+}

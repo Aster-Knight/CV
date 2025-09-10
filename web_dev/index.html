@@ -31,6 +31,11 @@
                     </li>
                 </ul>
             </div>
+
+            <form class="d-flex ms-lg-3" role="search" onsubmit="return false;"> <!-- onsubmit previene que la página se recargue -->
+            <input id="skill-search-input" class="form-control" type="search" placeholder="Buscar habilidad..." aria-label="Search">
+            </form>
+
         </div>
     </nav>
 
@@ -111,22 +116,24 @@
             <div class="card">
                 <h3>Soft Skills</h3>
                 <ol>
-                    <li>Pensamiento Critico</li>
-                    <li>Liderazgo y Trabajo en Equipo</li>
-                    <li>Aprendizaje Continuo</li>
-                    <li>Adaptabilidad</li>
-                    <li>Gestion de Riesgos</li>
-                    <li>Comunicacion Efectiva</li>
+                    <li class="filterable-skill">Pensamiento Critico</li>
+                    <li class="filterable-skill">Liderazgo y Trabajo en Equipo</li>
+                    <li class="filterable-skill">Aprendizaje Continuo</li>
+                    <li class="filterable-skill">Adaptabilidad</li>
+                    <li class="filterable-skill">Gestion de Riesgos</li>
+                    <li class="filterable-skill">Comunicacion Efectiva</li>
                 </ol>
             </div>
 
-            <div class="card">
+            <div class="card skill-container"> <!-- Cambiamos la clase aquí -->
                 <h3>Lenguajes de Programación</h3>
-                    <div>
-                        <span class="badge bg-primary fs-6 me-2">C/C++</span>
-                        <span class="badge bg-info fs-6 me-2">Python</span>
-                        <span class="badge bg-success fs-6">Rust</span>
-                    </div>
+                
+                <!-- Este div agrupa las insignias -->
+                <div>
+                    <span class="badge bg-primary fs-6 me-2 filterable-item">C/C++</span>
+                    <span class="badge bg-info fs-6 me-2 filterable-item">Python</span>
+                    <span class="badge bg-success fs-6 filterable-item">Rust</span>
+                </div>
             </div>
     </aside>
 
@@ -200,7 +207,7 @@
                             <h3 class="card-title">Tecnologías</h3>
                             
                             <!-- Contenedor para la primera tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>SO Linux Desktop</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 95%">Avanzado (95%)</div>
@@ -211,7 +218,7 @@
                             </div>
 
                             <!-- Contenedor para la segunda tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>Git</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 95%">Avanzado (95%)</div>
@@ -222,7 +229,7 @@
                             </div>
 
                             <!-- Contenedor para la tercera tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>SQL</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 90%">Competente (90%)</div>
@@ -233,7 +240,7 @@
                             </div>
 
                             <!-- Contenedor para la cuarta tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>Docker</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 80%">Intermedio (80%)</div>
@@ -244,7 +251,7 @@
                             </div>
 
                             <!-- Contenedor para la quinta tecnología -->
-                            <div> <!-- Quitamos mb-4 del último elemento para un espaciado perfecto -->
+                            <div class="mb-4 filterable-skill">
                                 <h5>Microcontroladores</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%">Intermedio (75%)</div>
@@ -433,6 +440,51 @@
 
         // 4. Conectamos la función al evento 'click' del botón
         toggleThemeBtn.addEventListener('click', toggleTheme);
+
+        // --- 7. FUNCIONALIDAD: BUSCADOR DE HABILIDADES (VERSIÓN MEJORADA) ---
+        const searchInput = document.getElementById('skill-search-input');
+        const allFilterableElements = document.querySelectorAll('.filterable-skill, .skill-container');
+
+        function filterSkills() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            allFilterableElements.forEach(element => {
+                // Caso 1: Es un contenedor con items internos (como los badges)
+                if (element.classList.contains('skill-container')) {
+                    const items = element.querySelectorAll('.filterable-item');
+                    let hasVisibleItem = false;
+
+                    // Filtramos los items internos
+                    items.forEach(item => {
+                        if (item.textContent.toLowerCase().includes(searchTerm)) {
+                            item.classList.remove('hidden-skill');
+                            hasVisibleItem = true; // Encontramos al menos una coincidencia
+                        } else {
+                            item.classList.add('hidden-skill');
+                        }
+                    });
+
+                    // Ocultamos el contenedor COMPLETO solo si NINGÚN item es visible
+                    if (hasVisibleItem) {
+                        element.classList.remove('hidden-skill');
+
+                    } else {
+                        element.classList.add('hidden-skill');
+                    }
+                } 
+                // Caso 2: Es una habilidad simple (como las tarjetas de Soft Skills o Tecnologías)
+                else {
+                    const elementText = element.textContent.toLowerCase();
+                    if (elementText.includes(searchTerm)) {
+                        element.classList.remove('hidden-skill');
+                    } else {
+                        element.classList.add('hidden-skill');
+                    }
+                }
+            });
+        }
+
+        searchInput.addEventListener('input', filterSkills);
     </script>
 
 </body>
