@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Jonatan Aguilar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -31,6 +31,11 @@
                     </li>
                 </ul>
             </div>
+
+            <form class="d-flex ms-lg-3" role="search" onsubmit="return false;"> <!-- onsubmit previene que la página se recargue -->
+            <input id="skill-search-input" class="form-control" type="search" placeholder="Buscar habilidad..." aria-label="Search">
+            </form>
+
         </div>
     </nav>
 
@@ -47,41 +52,63 @@
     </div>
 
     <header class="d-flex justify-content-center align-items-center">
+    <div class="header-content">
 
-    <div class="header-content text-center">
-
-        <div class="profile-picture-container">
-            <picture>
-                <img src="cv foto.webp" alt="Foto de Jonatan Aguilar" class="profile-photo rounded-circle border border-primary border-5">
-            </picture>
+        <!-- Columna 1: Saludo Dinámico -->
+        <div id="dynamic-greeting" class="dynamic-greeting-container">
+            <!-- El icono dinámico irá aquí -->
+            <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                <i id="greeting-icon" class="display-4 me-3"></i>
+                <p id="greeting-text" class="m-0 fs-3"></p>
+            </div>
+            <p id="current-time" class="m-0 display-4 fw-bold"></p>
+            <p id="current-date" class="m-0 text-white-50 fs-5"></p>
         </div>
+
+        <!-- 3. NUEVO GRUPO para la foto y la info de contacto -->
+        <div class="profile-group d-flex flex-column flex-md-row align-items-center">
+
+            <div class="profile-picture-container">
+                <picture>
+                    <img src="cv foto.webp" alt="Foto de Jonatan Aguilar" class="profile-photo rounded-circle border border-primary border-5">
+                </picture>
+            </div>
         
-        <div class="header-text">
-            <h1>Jonatan Aguilar</h1>
-            <h2>Estudiante de Computer Science</h2>
-            <nav>
-                <!-- Correo: Icono de sobre -->
-                <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center">
-                    <i class="bi bi-envelope-fill me-2"></i> Correo
-                </a>
+            <div class="header-text">
+                <h1>Jonatan Aguilar</h1>
+                <h2>Estudiante de Computer Science</h2>
+                <nav id="contact-links">
+                    <!-- Correo: Icono de sobre -->
+                    <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center">
+                        <i class="bi bi-envelope-fill me-2"></i> Correo
+                    </a>
 
-                <!-- Github: Icono de Github -->
-                <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center">
-                    <i class="bi bi-github me-2"></i> Github
-                </a>
+                    <!-- Github: Icono de Github -->
+                    <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center">
+                        <i class="bi bi-github me-2"></i> Github
+                    </a>
 
-                <!-- Linkedin: Icono de Linkedin -->
-                <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/" class="d-inline-flex align-items-center">
-                    <i class="bi bi-linkedin me-2"></i> Linkedin
-                </a>
-                
-                <button id="download-btn" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
-                    <i class="bi bi-download"></i>
-                    Descargar CV
-                </button>
-            </nav>
+                    <!-- Linkedin: Icono de Linkedin -->
+                    <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/" class="d-inline-flex align-items-center">
+                        <i class="bi bi-linkedin me-2"></i> Linkedin
+                    </a>
+                    
+                    <button id="download-btn" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-download"></i>
+                        Descargar CV
+                    </button>
+                </nav>
+            </div>
         </div>
     </div>
+
+        <!-- Columna 3: Nuevos Botones de Acción -->
+        <div class="action-buttons-container d-flex flex-column gap-3">
+            <button id="toggle-experience-btn" class="btn btn-primary"><i class="bi bi-patch-check-fill me-2"></i> Experiencia</button>
+            <button id="toggle-contact-btn" class="btn btn-info"><i class="bi bi-person-lines-fill me-2"></i> Contacto Detallado</button>
+            <button id="toggle-theme-btn" class="btn btn-secondary"><i class="bi bi-sun-fill me-2"></i> Modo Claro</button>
+        </div>
+
     </header>
 
     <main>
@@ -89,22 +116,24 @@
             <div class="card">
                 <h3>Soft Skills</h3>
                 <ol>
-                    <li>Pensamiento Critico</li>
-                    <li>Liderazgo y Trabajo en Equipo</li>
-                    <li>Aprendizaje Continuo</li>
-                    <li>Adaptabilidad</li>
-                    <li>Gestion de Riesgos</li>
-                    <li>Comunicacion Efectiva</li>
+                    <li class="filterable-skill">Pensamiento Critico</li>
+                    <li class="filterable-skill">Liderazgo y Trabajo en Equipo</li>
+                    <li class="filterable-skill">Aprendizaje Continuo</li>
+                    <li class="filterable-skill">Adaptabilidad</li>
+                    <li class="filterable-skill">Gestion de Riesgos</li>
+                    <li class="filterable-skill">Comunicacion Efectiva</li>
                 </ol>
             </div>
 
-            <div class="card">
+            <div class="card skill-container"> <!-- Cambiamos la clase aquí -->
                 <h3>Lenguajes de Programación</h3>
-                    <div>
-                        <span class="badge bg-primary fs-6 me-2">C/C++</span>
-                        <span class="badge bg-info fs-6 me-2">Python</span>
-                        <span class="badge bg-success fs-6">Rust</span>
-                    </div>
+                
+                <!-- Este div agrupa las insignias -->
+                <div>
+                    <span class="badge bg-primary fs-6 me-2 filterable-item">C/C++</span>
+                    <span class="badge bg-info fs-6 me-2 filterable-item">Python</span>
+                    <span class="badge bg-success fs-6 filterable-item">Rust</span>
+                </div>
             </div>
     </aside>
 
@@ -146,7 +175,8 @@
             </div>
 
         </section>
-                <section id="experiencia" class="card">
+
+        <section id="experiencia" class="card">
                             <h2>Experiencia Laboral</h2>
                             <table class="experience-table">
                                 <caption>Resumen de mi experiencia profesional y en proyectos</caption>
@@ -178,7 +208,7 @@
                             <h3 class="card-title">Tecnologías</h3>
                             
                             <!-- Contenedor para la primera tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>SO Linux Desktop</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 95%">Avanzado (95%)</div>
@@ -189,7 +219,7 @@
                             </div>
 
                             <!-- Contenedor para la segunda tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>Git</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 95%">Avanzado (95%)</div>
@@ -200,7 +230,7 @@
                             </div>
 
                             <!-- Contenedor para la tercera tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>SQL</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 90%">Competente (90%)</div>
@@ -211,7 +241,7 @@
                             </div>
 
                             <!-- Contenedor para la cuarta tecnología -->
-                            <div class="mb-4">
+                            <div class="mb-4 filterable-skill">
                                 <h5>Docker</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 80%">Intermedio (80%)</div>
@@ -222,7 +252,7 @@
                             </div>
 
                             <!-- Contenedor para la quinta tecnología -->
-                            <div> <!-- Quitamos mb-4 del último elemento para un espaciado perfecto -->
+                            <div class="mb-4 filterable-skill">
                                 <h5>Microcontroladores</h5>
                                 <div class="progress" role="progressbar" style="height: 25px;">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%">Intermedio (75%)</div>
@@ -233,50 +263,16 @@
                             </div>
 
                         </div>
-                    </section>
-            </div>
         </section>
+    </div>
+    </section>
 
 
     </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-            // Seleccionamos el botón y el body una sola vez
-            const downloadButton = document.getElementById('download-btn');
-            const bodyElement = document.body;
+    <script src="script.js"></script>
 
-            function generatePDF() {
-                // 1. AÑADIMOS LA CLASE para aplicar los estilos de PDF
-                bodyElement.classList.add('pdf-view');
-
-                const opt = {
-                margin:       0.5,
-                filename:     'CV-Jonatan-Aguilar.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true }, // useCORS es bueno para imágenes externas
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-                };
-
-                // Mostramos el toast justo antes de guardar
-                const toastLiveExample = document.getElementById('downloadToast');
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-                toastBootstrap.show();
-
-                // 2. GENERAMOS EL PDF desde el body (que ahora tiene los estilos correctos)
-                html2pdf().set(opt).from(bodyElement).save().then(() => {
-                    // 3. QUITAMOS LA CLASE para devolver la página a la normalidad,
-                    //    una vez que el PDF se ha guardado.
-                    bodyElement.classList.remove('pdf-view');
-                });
-            }
-
-            // Añadimos el listener al botón
-            downloadButton.addEventListener('click', generatePDF);
-    </script>
 </body>
 </html>
-
-
-
