@@ -345,3 +345,63 @@ main {
     max-height: 0;
     margin-top: 0 !important;
 }
+
+/* ==========================================================================
+   TEMA CLARO (LIGHT MODE) - Activado con JavaScript
+   ========================================================================== */
+
+/* Cuando el body tenga la clase .light-mode, se aplican estas reglas */
+body.light-mode {
+    background-color: #f8f9fa !important; /* Un gris muy claro de Bootstrap */
+    color: #212529 !important;            /* Texto casi negro de Bootstrap */
+}
+
+/* --- Ocultar Elementos Dinámicos --- */
+body.light-mode #dynamic-greeting,
+body.light-mode header::before {
+    display: none !important;
+}
+
+/* --- Detener Animaciones --- */
+body.light-mode .progress-bar-animated,
+body.light-mode .card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* --- Re-estilizar Componentes Principales --- */
+body.light-mode .card {
+    background: #ffffff !important;
+    border: 1px solid #dee2e6 !important; /* Borde sutil de Bootstrap */
+}
+
+body.light-mode h1, body.light-mode h2, body.light-mode h3 {
+    color: #007bff !important; /* Un azul primario para los títulos */
+}
+
+body.light-mode a {
+    color: #0056b3 !important; /* Un azul más oscuro para los enlaces */
+}
+
+body.light-mode header {
+    background-color: #e9ecef !important; /* Un fondo gris claro para el header */
+}
+
+body.light-mode .profile-photo {
+    border-color: #007bff !important; /* Borde de la foto en azul */
+}
+
+/* --- Re-estilizar Botones y Separadores --- */
+body.light-mode .btn-outline-light {
+    color: #212529 !important;
+    border-color: #212529 !important;
+}
+body.light-mode .btn-outline-light:hover {
+    color: #fff !important;
+    background-color: #212529 !important;
+}
+
+body.light-mode .separator-line {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}

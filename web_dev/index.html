@@ -102,8 +102,7 @@
     <div class="action-buttons-container d-flex flex-column gap-3">
         <button id="toggle-experience-btn" class="btn btn-primary"><i class="bi bi-patch-check-fill me-2"></i> Experiencia</button>
         <button id="toggle-contact-btn" class="btn btn-info"><i class="bi bi-person-lines-fill me-2"></i> Contacto Detallado</button>
-
-        <button class="btn btn-secondary"><i class="bi bi-telephone-fill me-2"></i> Contacto Rápido</button>
+        <button id="toggle-theme-btn" class="btn btn-secondary"><i class="bi bi-sun-fill me-2"></i> Modo Claro</button>
     </div>
     </header>
 
@@ -297,9 +296,7 @@
 
             // Añadimos el listener al botón
             downloadButton.addEventListener('click', generatePDF);
-    </script>
 
-    <script>
         // 1. Seleccionamos los elementos del HTML donde mostraremos la información
         const greetingElement = document.getElementById('greeting-text');
         const timeElement = document.getElementById('current-time');
@@ -408,6 +405,39 @@
 
         // 5. Conectamos la función al evento 'click' del botón
         toggleContactBtn.addEventListener('click', toggleContactView);
+
+        // --- SCRIPT PARA EL BOTÓN DE TEMA (MODO CLARO/OSCURO) ---
+
+        // 1. Seleccionamos los elementos necesarios
+        const toggleThemeBtn = document.getElementById('toggle-theme-btn');
+        // La foto de perfil ya la seleccionamos en el script anterior, podemos reutilizar la variable `profilePhoto`
+        const themeIcon = toggleThemeBtn.querySelector('i');
+
+        // 2. Creamos la función que alternará el tema
+        function toggleTheme() {
+            // Alternamos la clase .light-mode en el elemento <body>
+            bodyElement.classList.toggle('light-mode');
+
+            // 3. Verificamos el estado actual para cambiar la foto y el botón
+            if (bodyElement.classList.contains('light-mode')) {
+                // Si ESTÁ en modo claro:
+                // Cambiamos la imagen a la versión "formal"
+                profilePhoto.src = minimalPhotoSrc; // Reutilizamos la variable del script anterior
+                // Cambiamos el botón para que invite a volver al modo oscuro
+                themeIcon.className = 'bi bi-moon-stars-fill me-2';
+                toggleThemeBtn.childNodes[2].nodeValue = ' Modo Oscuro';
+            } else {
+                // Si NO está en modo claro (está en modo oscuro):
+                // Volvemos a la imagen original
+                profilePhoto.src = originalPhotoSrc; // Reutilizamos la variable del script anterior
+                // Volvemos al botón original
+                themeIcon.className = 'bi bi-sun-fill me-2';
+                toggleThemeBtn.childNodes[2].nodeValue = ' Modo Claro';
+            }
+        }
+
+        // 4. Conectamos la función al evento 'click' del botón
+        toggleThemeBtn.addEventListener('click', toggleTheme);
     </script>
 
 </body>
