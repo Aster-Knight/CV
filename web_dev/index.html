@@ -48,21 +48,21 @@
 
     <header class="d-flex justify-content-center align-items-center">
 
-    <div class="header-content d-flex flex-column flex-md-row align-items-center justify-content-between w-100">
+    <div class="header-content">
 
-        <!-- Elemento para el Saludo Dinámico (sin cambios) -->
+        <!-- Columna 1: Saludo Dinámico -->
         <div id="dynamic-greeting" class="dynamic-greeting-container">
-            <p id="greeting-text" class="m-0 fs-4"></p>
-            <p id="current-time" class="m-0 fs-2 fw-bold"></p>
-            <p id="current-date" class="m-0 text-white-50"></p>
+            <!-- El icono dinámico irá aquí -->
+            <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                <i id="greeting-icon" class="display-4 me-3"></i>
+                <p id="greeting-text" class="m-0 fs-3"></p>
+            </div>
+            <p id="current-time" class="m-0 display-4 fw-bold"></p>
+            <p id="current-date" class="m-0 text-white-50 fs-5"></p>
         </div>
 
-        <!-- 2. NUEVO SEPARADOR VERTICAL -->
-        <!-- Se mostrará solo en pantallas medianas y más grandes -->
-        <div class="separator-line d-none d-md-block"></div>
-
         <!-- 3. NUEVO GRUPO para la foto y la info de contacto -->
-        <div class="profile-group d-flex flex-column flex-md-row align-items-center">
+    <div class="profile-group d-flex flex-column flex-md-row align-items-center">
 
             <div class="profile-picture-container">
                 <picture>
@@ -96,6 +96,13 @@
                 </nav>
             </div>
         </div>
+    </div>
+
+        <!-- Columna 3: Nuevos Botones de Acción -->
+    <div class="action-buttons-container d-flex flex-column gap-3">
+        <button class="btn btn-primary"><i class="bi bi-briefcase-fill me-2"></i> Portafolio</button>
+        <button class="btn btn-info"><i class="bi bi-chat-dots-fill me-2"></i> Blog</button>
+        <button class="btn btn-secondary"><i class="bi bi-telephone-fill me-2"></i> Contacto Rápido</button>
     </div>
     </header>
 
@@ -299,35 +306,38 @@
 
         // 2. Creamos una función para actualizar todo
         function updateDynamicGreeting() {
+            // Seleccionamos el nuevo elemento del icono
+            const greetingIcon = document.getElementById('greeting-icon');
             const now = new Date();
             const hours = now.getHours();
 
-            // Lógica para el saludo (sin cambios)
             let greeting;
+            let iconClass; // Variable para guardar la clase del icono
+
+            // Lógica para el saludo Y EL ICONO
             if (hours < 12) {
                 greeting = 'Buenos días';
+                iconClass = 'bi bi-brightness-high-fill text-warning'; // Icono de sol
             } else if (hours < 19) {
                 greeting = 'Buenas tardes';
+                iconClass = 'bi bi-sunset-fill text-info'; // Icono de atardecer
             } else {
                 greeting = 'Buenas noches';
+                iconClass = 'bi bi-moon-stars-fill text-light'; // Icono de luna
             }
 
-            // --- 1. CORRECCIÓN DE LA HORA A HH:MM ---
-            // Obtenemos las horas y minutos
+            // Formateo de hora y fecha (sin cambios)
             const currentHours = now.getHours().toString().padStart(2, '0');
             const currentMinutes = now.getMinutes().toString().padStart(2, '0');
-            // Unimos los valores con dos puntos
             const timeString = `${currentHours}:${currentMinutes}`;
-            // --- FIN DE LA CORRECCIÓN ---
-
-            // Formateo de la fecha larga (sin cambios)
             const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const dateString = now.toLocaleDateString('es-ES', dateOptions);
 
-            // Actualizamos el contenido en el HTML
+            // Actualizamos el contenido en el HTML, incluyendo el icono
             greetingElement.textContent = greeting;
             timeElement.textContent = timeString;
             dateElement.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+            greetingIcon.className = iconClass; // Aplicamos la clase del icono
         }
 
         // 4. Hacemos que la función se ejecute cada segundo para que el reloj avance

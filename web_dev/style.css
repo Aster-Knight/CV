@@ -60,12 +60,49 @@ header::before {
 }
 
 /* 2. Contenedor del Contenido (Foto + Texto) */
+/* --- Nuevo Layout de Grid para el Header --- */
+
 .header-content {
+    /* Por defecto (móvil) es un flexbox en columna */
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
-    gap: 1.5rem; 
-    max-width: 100%;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* En pantallas de tablet y más grandes, SE CONVIERTE EN UN GRID */
+@media (min-width: 768px) {
+    .header-content {
+        display: grid;
+        /* Definimos 3 columnas: saludo (auto), perfil (flexible), botones (auto) */
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 2rem;
+    }
+}
+
+/* Estilos para el grupo de perfil y los separadores */
+.profile-group {
+    gap: 1.5rem; /* Espacio entre la foto y el texto */
+}
+
+/* Creamos los separadores con bordes, solo en la vista de escritorio */
+@media (min-width: 768px) {
+    .profile-group {
+        /* Borde izquierdo (separador 1) */
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+        padding-left: 2rem;
+        /* Borde derecho (separador 2) */
+        border-right: 2px solid rgba(255, 255, 255, 0.2);
+        padding-right: 2rem;
+    }
+}
+
+/* Contenedor de los botones de acción */
+.action-buttons-container {
+    width: 100%; /* En móvil ocupan todo el ancho */
+    max-width: 250px; /* Un ancho máximo para que no se estiren demasiado */
 }
 
 /* 3. Contenedor del Texto (Nombre, Título, Nav) */
