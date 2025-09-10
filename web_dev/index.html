@@ -48,38 +48,53 @@
 
     <header class="d-flex justify-content-center align-items-center">
 
-    <div class="header-content text-center">
+    <div class="header-content d-flex flex-column flex-md-row align-items-center justify-content-between w-100">
 
-        <div class="profile-picture-container">
-            <picture>
-                <img src="cv foto.webp" alt="Foto de Jonatan Aguilar" class="profile-photo rounded-circle border border-primary border-5">
-            </picture>
+        <!-- Elemento para el Saludo Dinámico (sin cambios) -->
+        <div id="dynamic-greeting" class="dynamic-greeting-container">
+            <p id="greeting-text" class="m-0 fs-4"></p>
+            <p id="current-time" class="m-0 fs-2 fw-bold"></p>
+            <p id="current-date" class="m-0 text-white-50"></p>
         </div>
+
+        <!-- 2. NUEVO SEPARADOR VERTICAL -->
+        <!-- Se mostrará solo en pantallas medianas y más grandes -->
+        <div class="separator-line d-none d-md-block"></div>
+
+        <!-- 3. NUEVO GRUPO para la foto y la info de contacto -->
+        <div class="profile-group d-flex flex-column flex-md-row align-items-center">
+
+            <div class="profile-picture-container">
+                <picture>
+                    <img src="cv foto.webp" alt="Foto de Jonatan Aguilar" class="profile-photo rounded-circle border border-primary border-5">
+                </picture>
+            </div>
         
-        <div class="header-text">
-            <h1>Jonatan Aguilar</h1>
-            <h2>Estudiante de Computer Science</h2>
-            <nav>
-                <!-- Correo: Icono de sobre -->
-                <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center">
-                    <i class="bi bi-envelope-fill me-2"></i> Correo
-                </a>
+            <div class="header-text">
+                <h1>Jonatan Aguilar</h1>
+                <h2>Estudiante de Computer Science</h2>
+                <nav>
+                    <!-- Correo: Icono de sobre -->
+                    <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center">
+                        <i class="bi bi-envelope-fill me-2"></i> Correo
+                    </a>
 
-                <!-- Github: Icono de Github -->
-                <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center">
-                    <i class="bi bi-github me-2"></i> Github
-                </a>
+                    <!-- Github: Icono de Github -->
+                    <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center">
+                        <i class="bi bi-github me-2"></i> Github
+                    </a>
 
-                <!-- Linkedin: Icono de Linkedin -->
-                <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/" class="d-inline-flex align-items-center">
-                    <i class="bi bi-linkedin me-2"></i> Linkedin
-                </a>
-                
-                <button id="download-btn" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
-                    <i class="bi bi-download"></i>
-                    Descargar CV
-                </button>
-            </nav>
+                    <!-- Linkedin: Icono de Linkedin -->
+                    <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/" class="d-inline-flex align-items-center">
+                        <i class="bi bi-linkedin me-2"></i> Linkedin
+                    </a>
+                    
+                    <button id="download-btn" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-download"></i>
+                        Descargar CV
+                    </button>
+                </nav>
+            </div>
         </div>
     </div>
     </header>
@@ -275,6 +290,53 @@
             // Añadimos el listener al botón
             downloadButton.addEventListener('click', generatePDF);
     </script>
+
+    <script>
+        // 1. Seleccionamos los elementos del HTML donde mostraremos la información
+        const greetingElement = document.getElementById('greeting-text');
+        const timeElement = document.getElementById('current-time');
+        const dateElement = document.getElementById('current-date');
+
+        // 2. Creamos una función para actualizar todo
+        function updateDynamicGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+
+            // Lógica para el saludo (sin cambios)
+            let greeting;
+            if (hours < 12) {
+                greeting = 'Buenos días';
+            } else if (hours < 19) {
+                greeting = 'Buenas tardes';
+            } else {
+                greeting = 'Buenas noches';
+            }
+
+            // --- 1. CORRECCIÓN DE LA HORA A HH:MM ---
+            // Obtenemos las horas y minutos
+            const currentHours = now.getHours().toString().padStart(2, '0');
+            const currentMinutes = now.getMinutes().toString().padStart(2, '0');
+            // Unimos los valores con dos puntos
+            const timeString = `${currentHours}:${currentMinutes}`;
+            // --- FIN DE LA CORRECCIÓN ---
+
+            // Formateo de la fecha larga (sin cambios)
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('es-ES', dateOptions);
+
+            // Actualizamos el contenido en el HTML
+            greetingElement.textContent = greeting;
+            timeElement.textContent = timeString;
+            dateElement.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+        }
+
+        // 4. Hacemos que la función se ejecute cada segundo para que el reloj avance
+        setInterval(updateDynamicGreeting, 1000);
+
+        // 5. La ejecutamos una vez al cargar la página para que no haya un retraso de 1 segundo
+        updateDynamicGreeting();
+    </script>
+
 </body>
 </html>
 

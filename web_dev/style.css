@@ -255,3 +255,28 @@ main {
 .pdf-view .table > :not(caption) > * > * {
     background-color: inherit !important;
 }
+
+/* --- Estilos para el Saludo Dinámico --- */
+
+.dynamic-greeting-container {
+    text-align: center;
+    /* Un pequeño margen inferior en móviles para separarlo de la foto */
+    margin-bottom: 2rem; 
+}
+
+/* En pantallas de tablet y más grandes, quitamos el margen inferior
+   y añadimos un margen a la derecha para separarlo de la foto */
+@media (min-width: 768px) {
+    .dynamic-greeting-container {
+        text-align: left; /* Alineamos a la izquierda en escritorio */
+        margin-bottom: 0;
+        margin-right: 2rem;
+    }
+}
+
+.separator-line {
+    width: 2px; /* Grosor de la línea */
+    height: 120px; /* Altura de la línea */
+    background-color: rgba(255, 255, 255, 0.2); /* Color semi-transparente */
+    border-radius: 2px;
+}
