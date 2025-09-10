@@ -73,7 +73,7 @@
             <div class="header-text">
                 <h1>Jonatan Aguilar</h1>
                 <h2>Estudiante de Computer Science</h2>
-                <nav>
+                <nav id="contact-links">
                     <!-- Correo: Icono de sobre -->
                     <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center">
                         <i class="bi bi-envelope-fill me-2"></i> Correo
@@ -100,14 +100,9 @@
 
         <!-- Columna 3: Nuevos Botones de Acción -->
     <div class="action-buttons-container d-flex flex-column gap-3">
-        <!-- 1. BOTÓN DE EXPERIENCIA (MODIFICADO) -->
-        <button id="toggle-experience-btn" class="btn btn-primary">
-            <!-- El icono inicial muestra que está ACTIVO -->
-            <i class="bi bi-patch-check-fill me-2"></i> Experiencia
-        </button>
+        <button id="toggle-experience-btn" class="btn btn-primary"><i class="bi bi-patch-check-fill me-2"></i> Experiencia</button>
+        <button id="toggle-contact-btn" class="btn btn-info"><i class="bi bi-person-lines-fill me-2"></i> Contacto Detallado</button>
 
-        <button class="btn btn-info"><i class="bi bi-chat-dots-fill me-2"></i> Blog</button>
-        
         <button class="btn btn-secondary"><i class="bi bi-telephone-fill me-2"></i> Contacto Rápido</button>
     </div>
     </header>
@@ -377,6 +372,42 @@
 
         // 4. Conectamos la función al evento 'click' del botón
         toggleExperienceBtn.addEventListener('click', toggleExperience);
+
+                // 1. Seleccionamos los elementos necesarios
+        const toggleContactBtn = document.getElementById('toggle-contact-btn');
+        const headerText = document.querySelector('.header-text'); // Contenedor de la info
+        const profilePhoto = document.querySelector('.profile-photo'); // La imagen
+        const contactIcon = toggleContactBtn.querySelector('i'); // El icono del botón
+
+        // 2. Guardamos las rutas de las dos imágenes
+        const originalPhotoSrc = 'cv foto.webp';
+        const minimalPhotoSrc = 'profile_black.webp';
+
+        // 3. Creamos la función que se ejecutará al hacer clic
+        function toggleContactView() {
+            // Alternamos la clase .minimal-view en el contenedor del texto
+            headerText.classList.toggle('minimal-view');
+
+            // 4. Verificamos el estado actual para cambiar la foto y el botón
+            if (headerText.classList.contains('minimal-view')) {
+                // Si ESTÁ en modo minimalista:
+                // Cambiamos la imagen a la versión en blanco y negro
+                profilePhoto.src = minimalPhotoSrc;
+                // Cambiamos el botón para que invite a mostrar los detalles
+                contactIcon.className = 'bi bi-person-fill me-2';
+                toggleContactBtn.childNodes[2].nodeValue = ' Contacto Básico'; // Cambia el texto
+            } else {
+                // Si NO está en modo minimalista (está detallado):
+                // Volvemos a la imagen original
+                profilePhoto.src = originalPhotoSrc;
+                // Volvemos al botón original
+                contactIcon.className = 'bi bi-person-lines-fill me-2';
+                toggleContactBtn.childNodes[2].nodeValue = ' Contacto Detallado'; // Cambia el texto
+            }
+        }
+
+        // 5. Conectamos la función al evento 'click' del botón
+        toggleContactBtn.addEventListener('click', toggleContactView);
     </script>
 
 </body>
