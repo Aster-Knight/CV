@@ -235,16 +235,32 @@ main {
 }
 
 /* Cuando el body tenga la clase .pdf-view, se aplican estas reglas generales */
-.pdf-view {
+body.pdf-view {
     background-color: #fff !important;
     color: #000 !important;
     font-size: 12pt !important;
 }
 
-/* Ocultar elementos innecesarios en la vista PDF */
-.pdf-view header::before,
-.pdf-view #download-btn {
+/* --- 1. Ocultar Elementos Dinámicos e Innecesarios --- */
+body.pdf-view #dynamic-greeting, /* Oculta el saludo dinámico */
+body.pdf-view #main-navbar,      /* Oculta el navbar principal */
+body.pdf-view header::before,   /* Oculta el GIF de fondo */
+body.pdf-view #download-btn,    /* Oculta el botón de descarga */
+body.pdf-view .action-buttons-container { /* Oculta la columna de botones */
     display: none !important;
+}
+
+/* --- 2. Re-estilizar las Barras de Progreso para que sean estáticas --- */
+body.pdf-view .progress {
+    background-color: #e9ecef !important; /* Un fondo gris claro para la barra vacía */
+    border: 1px solid #ccc;
+}
+
+body.pdf-view .progress-bar {
+    background-image: none !important; /* Elimina las rayas */
+    animation: none !important;         /* Detiene la animación */
+    background-color: #495057 !important; /* Un color de relleno sólido y oscuro */
+    color: #fff !important; /* Asegura que el texto dentro sea blanco y legible */
 }
 
 /* Re-estilizar Secciones y Componentes en la vista PDF */

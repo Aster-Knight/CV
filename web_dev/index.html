@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Jonatan Aguilar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -265,36 +265,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-            // Seleccionamos el botón y el body una sola vez
-            const downloadButton = document.getElementById('download-btn');
             const bodyElement = document.body;
 
-            function generatePDF() {
-                // 1. AÑADIMOS LA CLASE para aplicar los estilos de PDF
-                bodyElement.classList.add('pdf-view');
 
+            const downloadButton = document.getElementById('download-btn');
+            function generatePDF() {
+                // 1. Guardamos el estado actual de la foto de perfil
+                const currentPhotoSrc = profilePhoto.src;
+
+                // 2. FORZAMOS el estado deseado para el PDF
+                profilePhoto.src = minimalPhotoSrc; // Siempre usa la foto "formal"
+                bodyElement.classList.add('pdf-view'); // Activa los estilos de impresión
+
+                // Opciones del PDF (sin cambios)
                 const opt = {
-                margin:       0.5,
-                filename:     'CV-Jonatan-Aguilar.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true }, // useCORS es bueno para imágenes externas
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                margin: 0.5, filename: 'CV-Jonatan-Aguilar.pdf', image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
                 };
 
-                // Mostramos el toast justo antes de guardar
-                const toastLiveExample = document.getElementById('downloadToast');
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-                toastBootstrap.show();
-
-                // 2. GENERAMOS EL PDF desde el body (que ahora tiene los estilos correctos)
+                // Generamos y guardamos el PDF
                 html2pdf().set(opt).from(bodyElement).save().then(() => {
-                    // 3. QUITAMOS LA CLASE para devolver la página a la normalidad,
-                    //    una vez que el PDF se ha guardado.
+                    // 3. RESTAURAMOS la página a su estado original una vez terminado
                     bodyElement.classList.remove('pdf-view');
+                    profilePhoto.src = currentPhotoSrc; // Devuelve la foto que estaba antes
                 });
             }
-
-            // Añadimos el listener al botón
             downloadButton.addEventListener('click', generatePDF);
 
         // 1. Seleccionamos los elementos del HTML donde mostraremos la información
