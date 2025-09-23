@@ -1,0 +1,29 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar, .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr 2.5fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    main {
+        grid-template-columns: 300px 1fr;
+    }
+}

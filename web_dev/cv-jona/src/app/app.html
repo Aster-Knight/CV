@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<app-header></app-header>
+
+<main>
+  <!-- side bar para las skills -->
+  <aside class="sidebar">
+    <app-skills></app-skills>
+  </aside>
+  
+  <div class="main-content">
+    <!-- En el centro de la pagina va las expereicias previa (educativa y laboral), por lo que la distribucion de la pagina va a cambiar. -->
+    <app-previo></app-previo>
+  </div>
+</main>
+
+<!-- Notificacion de descarga se queda aqui -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="downloadToast" class="toast" role="alert">
+    <div class="toast-header">
+      <strong class="me-auto">Notificación</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-body">
+      La descarga del CV ha comenzado.
+    </div>
+  </div>
+</div>
