@@ -1,20 +1,23 @@
+// src/app/app.ts (CORREGIDO)
 import { Component } from '@angular/core';
-import { Header } from './components/header/header';
-import { NavbarComponent } from './components/navbar/navbar';
-import { Previo } from './components/previo/previo';
-import { Skills } from './components/skills/skills';
+
+// 1. Importa las clases con el nombre COMPLETO y desde el archivo .component
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { PrevioComponent } from './components/previo/previo.component'; // Asegúrate que este sea el nombre correcto
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  // 2. Usa los nombres de clase correctos en el array de imports
   imports: [
-    Header,
     NavbarComponent,
-    Previo,
-    Skills,
+    HeaderComponent,
+    SkillsComponent,
+    PrevioComponent
   ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
-export class AppComponent {
-}
+export class AppComponent { }

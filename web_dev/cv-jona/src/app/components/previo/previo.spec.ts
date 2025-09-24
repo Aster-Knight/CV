@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Previo } from './previo';
+import { PrevioComponent } from './previo.component';
 
 describe('Previo', () => {
-  let component: Previo;
-  let fixture: ComponentFixture<Previo>;
+  let component: PrevioComponent;
+  let fixture: ComponentFixture<PrevioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Previo]
+      imports: [PrevioComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Previo);
+    fixture = TestBed.createComponent(PrevioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
