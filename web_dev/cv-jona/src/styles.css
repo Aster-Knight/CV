@@ -1,1 +1,373 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   CV de Jonatan Aguilar - Hoja de Estilos Principal
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Imports & Root Variables
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #1a1a1a;
+    --card-color: #2c2c2c;
+    --primary-color: #00aaff;
+    --text-color: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --font-main: 'Lato', sans-serif;
+}
+
+
+/* ==========================================================================
+   2. General Resets & Body Styles
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   3. Base Element Styles
+   ========================================================================== */
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   4. Layout Styles (Estructura Principal)
+   ========================================================================== */
+header {
+    position: relative;
+    padding: 3rem 1rem;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('fondo_perfil.gif') no-repeat center center/cover;
+    filter: brightness(0.4);
+    z-index: -1;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar, .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+/* ==========================================================================
+   5. Component Styles
+   ========================================================================== */
+/* --- Header Components --- */
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.header-text {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.dynamic-greeting-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.separator-line {
+    width: 2px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.action-buttons-container {
+    width: 100%;
+    max-width: 250px;
+}
+
+/* --- Card Component --- */
+.card {
+    padding: 2rem;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #1a6659, #0bd7e6);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Filterable Skill Component --- */
+.filterable-skill {
+    transition: all 0.4s ease-out;
+}
+
+
+/* ==========================================================================
+   6. State & Theme Modifiers
+   ========================================================================== */
+/* --- State: Hidden Elements --- */
+.section-hidden,
+.hidden-skill {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: hidden;
+    border: none !important;
+}
+
+#contact-links {
+    transition: opacity 0.4s ease-out, max-height 0.4s ease-out;
+    overflow: hidden;
+}
+
+.minimal-view #contact-links {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0 !important;
+}
+
+/* --- Theme: Light Mode --- */
+body.light-mode {
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
+}
+
+body.light-mode #dynamic-greeting,
+body.light-mode header::before {
+    display: none !important;
+}
+
+body.light-mode .progress-bar-animated,
+body.light-mode .card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+body.light-mode .card {
+    background: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+body.light-mode h1, body.light-mode h2, body.light-mode h3 {
+    color: #007bff !important;
+}
+
+body.light-mode a {
+    color: #0056b3 !important;
+}
+
+body.light-mode header {
+    background-color: #e9ecef !important;
+}
+
+body.light-mode .profile-photo {
+    border-color: #007bff !important;
+}
+
+body.light-mode .btn-outline-light {
+    color: #212529 !important;
+    border-color: #212529 !important;
+}
+body.light-mode .btn-outline-light:hover {
+    color: #fff !important;
+    background-color: #212529 !important;
+}
+
+body.light-mode .separator-line {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* --- Theme: PDF View (Print Styles) --- */
+body.pdf-view {
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 12pt !important;
+}
+
+body.pdf-view #dynamic-greeting,
+body.pdf-view #main-navbar,
+body.pdf-view header::before,
+body.pdf-view #download-btn,
+body.pdf-view .action-buttons-container {
+    display: none !important;
+}
+
+body.pdf-view .progress {
+    background-color: #e9ecef !important;
+    border: 1px solid #ccc;
+}
+
+body.pdf-view .progress-bar {
+    background-image: none !important;
+    animation: none !important;
+    background-color: #495057 !important;
+    color: #fff !important;
+}
+
+body.pdf-view .card {
+    background: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+body.pdf-view h1, body.pdf-view h2, body.pdf-view h3, body.pdf-view a {
+    color: #000 !important;
+}
+
+body.pdf-view header {
+    background-color: #f0f0f0 !important;
+    border-bottom: 2px solid #ccc;
+}
+
+body.pdf-view .profile-photo {
+    border-color: #000 !important;
+}
+
+body.pdf-view main, .pdf-view .sidebar, .pdf-view .main-content {
+    display: block !important;
+    width: 100% !important;
+}
+
+body.pdf-view .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body.pdf-view .table, .pdf-view .table-dark {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+body.pdf-view .table > :not(caption) > * > * {
+    background-color: inherit !important;
+}
+
+
+/* ==========================================================================
+   7. Media Queries (Responsive Design)
+   ========================================================================== */
+/* --- Tablet View (768px y más) --- */
+@media (min-width: 768px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr 2.5fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .header-content {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .header-text {
+        margin-left: 2rem;
+    }
+
+    .dynamic-greeting-container {
+        text-align: left;
+        margin-bottom: 0;
+        margin-right: 2rem;
+    }
+
+    .profile-group {
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+        padding-left: 2rem;
+        border-right: 2px solid rgba(255, 255, 255, 0.2);
+        padding-right: 2rem;
+    }
+}
+
+/* --- Desktop View (1024px y más) --- */
+@media (min-width: 1024px) {
+    body {
+        font-size: 17px;
+    }
+
+    main {
+        grid-template-columns: 300px 1fr;
+    }
+}
