@@ -1,1 +1,26 @@
-<p>skills works!</p>
+<div class="card">
+    <h3>Soft Skills</h3>
+    <ol>
+        <li *ngFor="let skill of softSkills" class="filterable-skill">{{ skill }}</li>
+    </ol>
+</div>
+
+<div class="card skill-container">
+    <h3>Lenguajes de Programación</h3>
+    <div>
+        <span *ngFor="let lang of programmingLanguages" class="badge bg-primary fs-6 me-2 filterable-item">{{ lang }}</span>
+    </div>
+</div>
+
+<section id="tecnologias" class="card">
+    <h3 class="card-title">Tecnologías</h3>
+    <div *ngFor="let tech of technologies" class="mb-4 filterable-skill">
+        <h5>{{ tech.name }}</h5>
+        <div class="progress" role="progressbar" style="height: 25px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" [style.width.%]="tech.percentage">
+                {{ tech.level }} ({{ tech.percentage }}%)
+            </div>
+        </div>
+        <p class="text-white-50 mt-2 small">{{ tech.description }}</p>
+    </div>
+</section>
