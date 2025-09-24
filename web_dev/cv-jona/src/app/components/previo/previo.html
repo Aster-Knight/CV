@@ -1,1 +1,43 @@
-<p>previo works!</p>
+<!-- Sección de Educación -->
+<section id="educacion" class="card">
+    <h2>Educación</h2>
+    <table>
+        <caption>Detalle de mi formación académica</caption>
+        <thead>
+            <tr>
+                <th scope="col">Año</th>
+                <th scope="col">Institución</th>
+                <th scope="col">Título obtenido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of educationData">
+                <td>{{ item.periodo }}</td>
+                <td>{{ item.lugar }}</td>
+                <td>{{ item.puesto }}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Sección de Experiencia -->
+<section id="experiencia" class="card">
+    <h2>Experiencia Laboral</h2>
+    <table class="experience-table">
+        <caption>Resumen de mi experiencia profesional y en proyectos</caption>
+        <thead>
+            <tr>
+                <th scope="col">Periodo</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Puesto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of experienceData">
+                <td>{{ item.periodo }}</td>
+                <td>{{ item.lugar }}</td>
+                <td>{{ item.puesto }}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
