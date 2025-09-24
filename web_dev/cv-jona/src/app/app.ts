@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Header } from './components/header/header';
-import { Navbar } from './components/navbar/navbar';
+import { NavbarComponent } from './components/navbar/navbar';
 import { Previo } from './components/previo/previo';
 import { Skills } from './components/skills/skills';
 
@@ -9,7 +9,7 @@ import { Skills } from './components/skills/skills';
   standalone: true,
   imports: [
     Header,
-    Navbar,
+    NavbarComponent,
     Previo,
     Skills,
   ],
