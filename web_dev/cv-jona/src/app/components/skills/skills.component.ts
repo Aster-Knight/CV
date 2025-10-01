@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Necesario para *ngFor y [style]
+import { CommonModule } from '@angular/common';
+import { DataService } from '../../services/data';
 
 interface Technology {
   name: string;
@@ -16,8 +17,14 @@ interface Technology {
   styleUrls: ['./skills.component.css']
 })
 export class SkillsComponent {
+
+  programminglenguajes : string[];
+  constructor(private dataService: DataService) {
+    this.programminglenguajes = this.dataService.skills;
+  }
+
   softSkills: string[] = ['Pensamiento Crítico', 'Liderazgo y Trabajo en Equipo', 'Aprendizaje Continuo', 'Adaptabilidad', 'Gestión de Riesgos', 'Comunicación Efectiva'];
-  programmingLanguages: string[] = ['C/C++', 'Python', 'Rust'];
+  // programmingLanguages: string[] = ['C/C++', 'Python', 'Rust']; estalinea ya no es necesaria
   technologies: Technology[] = [
     { name: 'SO Linux Desktop', level: 'Avanzado', percentage: 95, description: 'Experiencia en el uso de sistemas operativos basados en Linux para desarrollo, gestión de paquetes y uso de la terminal.' },
     { name: 'Git', level: 'Avanzado', percentage: 95, description: 'Sólido manejo de Git para el control de versiones, colaboración en equipo mediante repositorios (GitHub, GitLab) y gestión de ramas.' },
