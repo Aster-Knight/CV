@@ -6,8 +6,9 @@
                 <i [class]="greetingIconClass" class="display-4 me-3"></i>
                 <p class="m-0 fs-3">{{ greetingText }}</p>
             </div>
-            <p class="m-0 display-4 fw-bold">{{ currentTime }}</p>
-            <p class="m-0 text-white-50 fs-5">{{ currentDate }}</p>
+            <!-- pipe de fecha tambien implementada -->
+            <p>{{ currentTime|date:'short' }}</p>
+            <p>{{ currentDate|date:'fullDate' }}</p>
         </div>
 
         <!-- Grupo de Perfil (Foto e Info) -->
@@ -16,8 +17,9 @@
                 <img [src]="profilePhoto" alt="Foto de Jonatan Aguilar" class="profile-photo rounded-circle border border-primary border-5">
             </div>
             <div class="header-text" [class.minimal-view]="isContactMinimal">
-                <h1>Jonatan Aguilar</h1>
-                <h2>Estudiante de Computer Science</h2>
+                <!-- Pipe de uppercase implementada en mi name y carrera -->
+                <h1>{{"Jonatan Aguilar"|uppercase}}</h1> 
+                <h2>{{"Estudiante de Computer Science"|uppercase}}</h2>
                 <nav id="contact-links">
                     <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Correo</a>
                     <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center"><i class="bi bi-github me-2"></i> Github</a>
