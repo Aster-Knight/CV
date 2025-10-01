@@ -1,11 +1,9 @@
 // src/app/app.ts (CORREGIDO)
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
-// 1. Importa las clases con el nombre COMPLETO y desde el archivo .component
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SkillsComponent } from './components/skills/skills.component';
-import { PrevioComponent } from './components/previo/previo.component'; // Aseg√∫rate que este sea el nombre correcto
 
 @Component({
   selector: 'app-root',
@@ -14,8 +12,7 @@ import { PrevioComponent } from './components/previo/previo.component'; // Aseg√
   imports: [
     NavbarComponent,
     HeaderComponent,
-    SkillsComponent,
-    PrevioComponent
+    RouterOutlet
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
