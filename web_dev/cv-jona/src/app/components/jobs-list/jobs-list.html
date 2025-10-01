@@ -1,0 +1,19 @@
+<div class="card">
+  <table class="experience-table">
+      <caption>Resumen de mi experiencia profesional</caption>
+      <thead>
+          <tr>
+              <th scope="col">Periodo</th>
+              <th scope="col">Empresa</th>
+              <th scope="col">Puesto</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of experienceData">
+              <td>{{ item.periodo }}</td>
+              <td>{{ item.lugar }}</td>
+              <td>{{ item.puesto }}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
