@@ -1,21 +1,14 @@
+<!-- src/app/app.html -->
 <app-navbar></app-navbar>
-
 <app-header></app-header>
+<main class="main-layout">
+  <!-- Columna de la Sidebar -->
+  <aside class="sidebar">
+    <app-projects></app-projects>
+  </aside>
 
-<main>
-  <!-- Marcador para utilizar rutas para los componentes -->
-  <router-outlet></router-outlet>
-</main>
-
-<!-- Notificacion de descarga se queda aqui -->
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="downloadToast" class="toast" role="alert">
-    <div class="toast-header">
-      <strong class="me-auto">Notificación</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-    </div>
-    <div class="toast-body">
-      La descarga del CV ha comenzado.
-    </div>
+  <!-- Columna del Contenido Principal de las Rutas -->
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
-</div>
+</main>

@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ProjectsComponent } from './components/projects/projects';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     NavbarComponent,
     HeaderComponent,
-    RouterOutlet
+    RouterOutlet,
+    ProjectsComponent
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
