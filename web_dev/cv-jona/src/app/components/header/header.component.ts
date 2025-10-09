@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { NasaService, ApodResponse } from '../../services/nasa';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,12 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  backgroundImageUrl = 'assets/fondo_perfil.gif'; // <-- Un valor por defecto
   greetingText: string = '';
   currentTime: string = '';
   currentDate: string = '';
   greetingIconClass: string = '';
-  profilePhoto: string = 'assets/cv foto.webp';
+  profilePhoto: string = 'assets/cv foto.webp'; 
   isContactMinimal: boolean = false;
   experienceIconClass: string = 'bi bi-patch-check-fill me-2';
   contactIconClass: string = 'bi bi-person-lines-fill me-2';
@@ -22,10 +24,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
   themeButtonText: string = 'Modo Claro';
   private timerId: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private nasaService: NasaService) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      // Llama al servicio de la NASA para obtener la imagen del día
+      this.nasaService.getAstronomyPictureOfTheDay().subscribe({
+        next: (data: ApodResponse) => {
+          // IMPORTANTE: La API a veces devuelve un video.
+          // Solo actualizamos el fondo si el tipo de medio es una imagen.
+          if (data.media_type === 'image') {
+            this.backgroundImageUrl = data.hdurl || data.url; // Usa HD si está disponible
+          }
+          // Si es un video, se quedará con la imagen por defecto.
+        },
+        error: (err) => {
+          console.error('Error fetching NASA APOD:', err);
+          // Si hay un error, no hacemos nada y se queda la imagen por defecto.
+        }
+      });
+
       this.updateDynamicGreeting();
       this.timerId = setInterval(() => this.updateDynamicGreeting(), 1000);
     }

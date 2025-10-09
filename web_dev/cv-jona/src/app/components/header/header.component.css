@@ -1,0 +1,63 @@
+/* src/app/components/header/header.component.css */
+
+/* :host se refiere al elemento <app-header> en sí mismo */
+:host header.header-dynamic-bg {
+  position: relative;
+  overflow: hidden;
+  /* Propiedades para el fondo dinámico */
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+}
+
+/* Superposición oscura para mejorar el contraste */
+:host header.header-dynamic-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurece un 50% */
+  z-index: 1;
+}
+
+/* Aseguramos que el contenido esté por encima de la superposición */
+:host header .header-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* === LA CLAVE PARA LA LEGIBILIDAD === */
+
+/* 1. Cambiamos todo el texto dentro del header a blanco */
+:host header {
+  color: #e0e0e0; /* Un blanco suave para el texto general */
+}
+
+/* 2. Hacemos los títulos y subtítulos más prominentes */
+:host header h1,
+:host header h2 {
+  color: #ffffff; /* Blanco puro */
+}
+
+/* 3. Añadimos la sombra al texto para que resalte */
+:host header h1,
+:host header h2,
+:host header p,
+:host header a,
+:host header .dynamic-greeting-container,
+:host header .btn-outline-light {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* 4. Aseguramos que los links también sean blancos */
+:host header a {
+  color: #ffffff;
+}
+
+:host header .btn-outline-light {
+    color: #ffffff;
+    border-color: #ffffff;
+}

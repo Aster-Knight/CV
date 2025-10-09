@@ -74,16 +74,32 @@ header {
     overflow: hidden;
 }
 
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('assets/fondo_perfil.gif') no-repeat center center/cover;
-    filter: brightness(0.4);
-    z-index: -1;
+header.header-dynamic-bg {
+  position: relative;
+  overflow: hidden;
+  /* Propiedades para el fondo que ahora es dinámico */
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out; /* Una bonita transición */
+}
+
+/* Añadimos una superposición oscura para que el texto sea legible */
+header.header-dynamic-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurece un 50% */
+  z-index: 1; /* Se pone encima del fondo pero debajo del contenido */
+}
+
+/* Nos aseguramos de que el contenido esté por encima de la superposición */
+header .header-content {
+  position: relative;
+  z-index: 2;
 }
 
 main {
@@ -370,4 +386,46 @@ body.pdf-view .table > :not(caption) > * > * {
     main {
         grid-template-columns: 300px 1fr;
     }
+}
+
+/* src/styles.css */
+
+/* --- Anulaciones para el Header Dinámico en Modo Claro --- */
+
+body.light-mode .header-dynamic-bg {
+  background-image: none !important; /* Desactiva la imagen de la NASA */
+  background-color: #e9ecef;       /* Pone un fondo claro sólido */
+}
+
+body.light-mode .header-dynamic-bg::after {
+  display: none; /* Oculta la superposición oscura */
+}
+
+body.light-mode header h1,
+body.light-mode header h2,
+body.light-mode header p,
+body.light-mode header a,
+body.light-mode header .dynamic-greeting-container,
+body.light-mode header .btn-outline-light {
+  color: #212529; /* Devuelve el texto a un color oscuro */
+  text-shadow: none; /* Quita la sombra */
+}
+
+/* --- Anulaciones para el Header en Modo Impresión (PDF) --- */
+
+body.pdf-view .header-dynamic-bg {
+  background-image: none !important; /* También desactiva la imagen */
+  background-color: #f0f0f0 !important;
+}
+
+body.pdf-view .header-dynamic-bg::after {
+  display: none; /* También oculta la superposición */
+}
+
+body.pdf-view header h1,
+body.pdf-view header h2,
+body.pdf-view header p,
+body.pdf-view header a {
+  color: #000000 !important; /* Texto negro puro para impresión */
+  text-shadow: none !important;
 }

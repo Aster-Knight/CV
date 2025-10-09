@@ -1,4 +1,5 @@
-<header class="d-flex justify-content-center align-items-center">
+<header class="d-flex justify-content-center align-items-center header-dynamic-bg"
+  [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }">
     <div class="header-content">
         <!-- Saludo Dinámico -->
         <div id="dynamic-greeting" class="dynamic-greeting-container">
