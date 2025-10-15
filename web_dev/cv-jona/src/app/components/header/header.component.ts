@@ -10,21 +10,21 @@ import { NasaService, ApodResponse } from '../../services/nasa';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  // --- PROPIEDADES DEL COMPONENTE ---
+  
 
-  // Saludo dinámico
+  
   greetingText = '';
   currentTime = '';
   currentDate = '';
   greetingIconClass = '';
   
-  // Imagen de perfil (con la ruta corregida)
+  
   profilePhoto = 'assets/cv-foto.webp';
   
-  // Imagen de fondo (se inicializa vacía para no cargar nada hasta tener la respuesta de la API)
+  
   backgroundImageUrl = '';
 
-  // Estado de los botones de acción
+  
   isContactMinimal = false;
   experienceIconClass = 'bi bi-patch-check-fill me-2';
   contactIconClass = 'bi bi-person-lines-fill me-2';
@@ -34,33 +34,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private timerId: any;
 
-  // Inyectamos los servicios necesarios: PLATFORM_ID para SSR y NasaService para la API
+  
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private nasaService: NasaService
   ) {}
 
   ngOnInit(): void {
-    // Toda la lógica que depende del navegador se ejecuta solo si estamos en el navegador
+    
     if (isPlatformBrowser(this.platformId)) {
-      // 1. Obtener la imagen de la NASA
+      
       this.nasaService.getAstronomyPictureOfTheDay().subscribe({
         next: (data: ApodResponse) => {
           if (data.media_type === 'image') {
             this.backgroundImageUrl = data.hdurl || data.url;
           } else {
-            // Si la API devuelve un video, usamos nuestro GIF de respaldo
+            
             this.backgroundImageUrl = 'assets/fondo_perfil.gif';
           }
         },
         error: (err) => {
           console.error('Error fetching NASA APOD, using fallback:', err);
-          // Si la API falla, usamos nuestro GIF de respaldo
+          
           this.backgroundImageUrl = 'assets/fondo_perfil.gif';
         }
       });
       
-      // 2. Iniciar el saludo dinámico
+      
       this.updateDynamicGreeting();
       this.timerId = setInterval(() => this.updateDynamicGreeting(), 1000);
     }
@@ -72,16 +72,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  // --- MÉTODOS DE ACCIÓN ---
+  
 
   async generatePDF(): Promise<void> {
     if (isPlatformBrowser(this.platformId)) {
-      // Importación dinámica para que html2pdf solo se cargue en el navegador
+      
       const html2pdf = (await import('html2pdf.js')).default;
 
       const bodyElement = document.body;
       const currentPhotoSrc = this.profilePhoto;
-      this.profilePhoto = 'assets/profile_black.webp'; // Ruta correcta
+      this.profilePhoto = 'assets/profile_black.webp'; 
       bodyElement.classList.add('pdf-view');
       
       const opt = { margin: 0.5, filename: 'CV-Jonatan-Aguilar.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } } as const;
@@ -106,11 +106,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   toggleContactView(): void {
     this.isContactMinimal = !this.isContactMinimal;
     if (this.isContactMinimal) {
-      this.profilePhoto = 'assets/profile_black.webp'; // Ruta correcta
+      this.profilePhoto = 'assets/profile_black.webp'; 
       this.contactIconClass = 'bi bi-person-fill me-2';
       this.contactButtonText = 'Contacto Básico';
     } else {
-      this.profilePhoto = 'assets/cv-foto.webp'; // Ruta correcta
+      this.profilePhoto = 'assets/cv-foto.webp'; 
       this.contactIconClass = 'bi bi-person-lines-fill me-2';
       this.contactButtonText = 'Contacto Detallado';
     }
@@ -120,11 +120,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       document.body.classList.toggle('light-mode');
       if (document.body.classList.contains('light-mode')) {
-        this.profilePhoto = 'assets/profile_black.webp'; // Ruta correcta
+        this.profilePhoto = 'assets/profile_black.webp'; 
         this.themeIconClass = 'bi bi-moon-stars-fill me-2';
         this.themeButtonText = 'Modo Oscuro';
       } else {
-        this.profilePhoto = 'assets/cv-foto.webp'; // Ruta correcta
+        this.profilePhoto = 'assets/cv-foto.webp'; 
         this.themeIconClass = 'bi bi-sun-fill me-2';
         this.themeButtonText = 'Modo Claro';
       }

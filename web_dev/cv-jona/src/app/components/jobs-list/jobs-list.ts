@@ -15,4 +15,3 @@ export class JobsListComponent {
     this.jobs = this.dataService.jobs;
   }
 }
- 

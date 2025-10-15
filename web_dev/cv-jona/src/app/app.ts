@@ -1,4 +1,3 @@
-// src/app/app.ts (CORREGIDO)
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -9,7 +8,7 @@ import { ProjectsComponent } from './components/projects/projects';
 @Component({
   selector: 'app-root',
   standalone: true,
-  // 2. Usa los nombres de clase correctos en el array de imports
+  
   imports: [
     NavbarComponent,
     HeaderComponent,

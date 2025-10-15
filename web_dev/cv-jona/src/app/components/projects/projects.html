@@ -1,24 +1,24 @@
-<!-- src/app/components/projects/projects.component.html -->
+
 <div class="card">
   <h3>Mis Proyectos en GitHub</h3>
 
-  <!-- Muestra un mensaje mientras los datos cargan -->
+  
   <div *ngIf="isLoading">
     <p>Cargando repositorios...</p>
   </div>
 
-  <!-- Muestra la lista cuando los datos hayan llegado -->
+  
   <ul *ngIf="!isLoading" class="list-group list-group-flush">
     <li *ngFor="let repo of repos" class="list-group-item bg-transparent text-white">
       <h5>
-        <!-- 1. Nombre y link al repositorio -->
+        
         <a [href]="repo.html_url" target="_blank" rel="noopener noreferrer">
           {{ repo.name }}
         </a>
       </h5>
-      <!-- 2. Descripción del repositorio -->
+      
       <p class="small text-white-50">{{ repo.description || 'Sin descripción.' }}</p>
-      <!-- 3. Estrellas -->
+      
       <span class="badge bg-primary rounded-pill">
         ★ {{ repo.stargazers_count }}
       </span>

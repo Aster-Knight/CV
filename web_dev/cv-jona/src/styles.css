@@ -1,10 +1,4 @@
-/* ==========================================================================
-   CV de Jonatan Aguilar - Hoja de Estilos Principal
-   ========================================================================== */
 
-/* ==========================================================================
-   1. Imports & Root Variables
-   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 :root {
@@ -17,9 +11,7 @@
 }
 
 
-/* ==========================================================================
-   2. General Resets & Body Styles
-   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -34,9 +26,8 @@ body {
 }
 
 
-/* ==========================================================================
-   3. Base Element Styles
-   ========================================================================== */
+
+
 h1, h2, h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
@@ -64,10 +55,8 @@ th, td {
 }
 
 
-/* ==========================================================================
-   4. Layout Styles (Estructura Principal)
-   ========================================================================== */
-/* Eliminamos el header */
+
+
 
 main {
     display: flex;
@@ -85,10 +74,9 @@ main {
 }
 
 
-/* ==========================================================================
-   5. Component Styles
-   ========================================================================== */
-/* --- Header Components --- */
+
+
+
 .header-content {
     display: flex;
     flex-direction: column;
@@ -135,7 +123,7 @@ header nav {
     max-width: 250px;
 }
 
-/* --- Card Component --- */
+
 .card {
     padding: 2rem;
     border-radius: 10px;
@@ -152,16 +140,16 @@ header nav {
     }
 }
 
-/* --- Filterable Skill Component --- */
+
 .filterable-skill {
     transition: all 0.4s ease-out;
 }
 
 
-/* ==========================================================================
-   6. State & Theme Modifiers
-   ========================================================================== */
-/* --- State: Hidden Elements --- */
+
+
+
+
 .section-hidden,
 .hidden-skill {
     opacity: 0;
@@ -185,7 +173,7 @@ header nav {
     margin-top: 0 !important;
 }
 
-/* --- Theme: Light Mode --- */
+
 body.light-mode {
     background-color: #f8f9fa !important;
     color: #212529 !important;
@@ -237,7 +225,7 @@ body.light-mode .separator-line {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-/* --- Theme: PDF View (Print Styles) --- */
+
 body.pdf-view {
     background-color: #fff !important;
     color: #000 !important;
@@ -307,10 +295,9 @@ body.pdf-view .table > :not(caption) > * > * {
 }
 
 
-/* ==========================================================================
-   7. Media Queries (Responsive Design)
-   ========================================================================== */
-/* --- Tablet View (768px y más) --- */
+
+
+
 @media (min-width: 768px) {
     main {
         display: grid;
@@ -344,7 +331,7 @@ body.pdf-view .table > :not(caption) > * > * {
     }
 }
 
-/* --- Desktop View (1024px y más) --- */
+
 @media (min-width: 1024px) {
     body {
         font-size: 17px;
@@ -355,17 +342,15 @@ body.pdf-view .table > :not(caption) > * > * {
     }
 }
 
-/* src/styles.css */
 
-/* --- Anulaciones para el Header Dinámico en Modo Claro --- */
 
 body.light-mode .header-dynamic-bg {
-  background-image: none !important; /* Desactiva la imagen de la NASA */
-  background-color: #e9ecef;       /* Pone un fondo claro sólido */
+  background-image: none !important; 
+  background-color: #e9ecef;       
 }
 
 body.light-mode .header-dynamic-bg::after {
-  display: none; /* Oculta la superposición oscura */
+  display: none; 
 }
 
 body.light-mode header h1,
@@ -374,40 +359,39 @@ body.light-mode header p,
 body.light-mode header a,
 body.light-mode header .dynamic-greeting-container,
 body.light-mode header .btn-outline-light {
-  color: #212529; /* Devuelve el texto a un color oscuro */
-  text-shadow: none; /* Quita la sombra */
+  color: #212529; 
+  text-shadow: none; 
 }
 
-/* --- Anulaciones para el Header en Modo Impresión (PDF) --- */
+
 
 body.pdf-view .header-dynamic-bg {
-  background-image: none !important; /* También desactiva la imagen */
+  background-image: none !important; 
   background-color: #f0f0f0 !important;
 }
 
 body.pdf-view .header-dynamic-bg::after {
-  display: none; /* También oculta la superposición */
+  display: none; 
 }
 
 body.pdf-view header h1,
 body.pdf-view header h2,
 body.pdf-view header p,
 body.pdf-view header a {
-  color: #000000 !important; /* Texto negro puro para impresión */
+  color: #000000 !important; 
   text-shadow: none !important;
 }
 
-/* src/styles.css (AÑADIR AL FINAL) */
 
-/* --- Anulaciones para el Header en Modo Claro --- */
+
 body.light-mode header {
-  background-image: none !important; /* Desactiva la imagen */
-  background-color: #e9ecef !important; /* Pone un fondo claro sólido */
-  color: #212529 !important; /* Texto oscuro */
+  background-image: none !important; 
+  background-color: #e9ecef !important; 
+  color: #212529 !important; 
 }
 
 body.light-mode header::after {
-  display: none; /* Oculta la superposición oscura */
+  display: none; 
 }
 
 body.light-mode header h1,
@@ -415,15 +399,55 @@ body.light-mode header h2,
 body.light-mode header p,
 body.light-mode header a,
 body.light-mode header .btn-outline-light {
-  color: inherit; /* Hereda el color oscuro del header */
-  text-shadow: none; /* Quita la sombra */
+  color: inherit; 
+  text-shadow: none; 
 }
 
 body.light-mode header .btn-outline-light {
     border-color: #212529;
 }
 
-/* --- Anulaciones para Modo Impresión (PDF) --- */
+
+body.pdf-view header {
+  background-image: none !important;
+  background-color: #f0f0f0 !important;
+}
+
+body.pdf-view header::after {
+  display: none;
+}
+
+body.pdf-view header h1, body.pdf-view header h2, body.pdf-view header p, body.pdf-view header a {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+
+
+body.light-mode header {
+  background-image: none !important; 
+  background-color: #e9ecef !important; 
+  color: #212529 !important; 
+}
+
+body.light-mode header::after {
+  display: none; 
+}
+
+body.light-mode header h1,
+body.light-mode header h2,
+body.light-mode header p,
+body.light-mode header a,
+body.light-mode header .btn-outline-light {
+  color: inherit; 
+  text-shadow: none; 
+}
+
+body.light-mode header .btn-outline-light {
+    border-color: #212529;
+}
+
+
 body.pdf-view header {
   background-image: none !important;
   background-color: #f0f0f0 !important;

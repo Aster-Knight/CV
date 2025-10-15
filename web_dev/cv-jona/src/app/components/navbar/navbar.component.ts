@@ -13,9 +13,7 @@ export class NavbarComponent {
     const allFilterableElements = document.querySelectorAll('.filterable-skill, .skill-container');
 
     allFilterableElements.forEach(element => {
-        /**
-       * Filtra las habilidades visibles según el término de búsqueda.
-       */
+        
       function filterSkills() {
           const searchTerm = (searchInput as HTMLInputElement).value.toLowerCase();
           allFilterableElements.forEach(element => {

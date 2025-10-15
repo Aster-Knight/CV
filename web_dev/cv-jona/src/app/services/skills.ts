@@ -1,4 +1,3 @@
-// src/app/services/skills.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -14,7 +13,7 @@ export interface Skill {
   providedIn: 'root'
 })
 export class SkillsService {
-  // La URL de nuestra API local que acabamos de crear
+  
   private readonly apiUrl = 'http://localhost:3001/skills';
 
   constructor(private http: HttpClient) { }
