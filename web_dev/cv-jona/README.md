@@ -53,6 +53,6 @@ El proyecto sigue una estructura modular estándar de Angular para separar respo
 
 2.  **Iniciar la aplicación:**
     ```bash
-    ng serve
+    ng serve -o
     ```
     La aplicación estará disponible en `http://localhost:4200` y se recargará automáticamente si se realizan cambios en el código fuente.
