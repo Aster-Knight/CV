@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+// src/app/components/skills/skills.component.ts
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../../services/data';
+// 1. Importa el nuevo servicio y la interfaz
+import { SkillsService, Skill } from '../../services/skills';
 
 interface Technology {
   name: string;
@@ -9,18 +11,35 @@ interface Technology {
   description: string;
 }
 
+
 @Component({
   selector: 'app-skills',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.css']
+  styleUrl: './skills.component.css'
 })
-export class SkillsComponent {
+export class SkillsComponent implements OnInit {
+  
+  // Creamos una propiedad para las habilidades que vienen de la API
+  apiSkills: Skill[] = [];
+  isLoading = true;
 
-  programminglenguajes : string[];
-  constructor(private dataService: DataService) {
-    this.programminglenguajes = this.dataService.skills;
+  // 2. Inyecta el nuevo servicio
+  constructor(private skillsService: SkillsService) {}
+
+  ngOnInit(): void {
+    // 3. Llama al servicio y suscríbete
+    this.skillsService.getSkills().subscribe({
+      next: (data) => {
+        this.apiSkills = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error al obtener las habilidades de la API local', err);
+        this.isLoading = false;
+      }
+    });
   }
 
   softSkills: string[] = ['Pensamiento Crítico', 'Liderazgo y Trabajo en Equipo', 'Aprendizaje Continuo', 'Adaptabilidad', 'Gestión de Riesgos', 'Comunicación Efectiva'];
