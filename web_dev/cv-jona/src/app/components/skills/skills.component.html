@@ -1,0 +1,30 @@
+
+<section id="tecnologias" class="card">
+  <h3 class="card-title">Habilidades Técnicas (desde API)</h3>
+  
+  <div *ngIf="isLoading">Cargando...</div>
+
+  <div *ngIf="!isLoading">
+    <div *ngFor="let skill of apiSkills" class="mb-4 filterable-skill">
+        <h5>{{ skill.name }} ({{ skill.category | titlecase }})</h5>
+        <div class="progress" role="progressbar" style="height: 25px;">
+            <div class="progress-bar" [style.width.%]="skill.level">
+                {{ skill.level }}%
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section id="tecnologias" class="card">
+    <h3 class="card-title">Tecnologías</h3>
+    <div *ngFor="let tech of technologies" class="mb-4 filterable-skill">
+        <h5>{{ tech.name }}</h5>
+        <div class="progress" role="progressbar" style="height: 25px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" [style.width.%]="tech.percentage">
+                {{ tech.level }} ({{ tech.percentage }}%)
+            </div>
+        </div>
+        <p class="text-white-50 mt-2 small">{{ tech.description }}</p>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+# Archivos compilados, temporales y de caché de Angular y Vite
+# Estos se generan cada vez que ejecutas 'ng serve' o 'ng build'.
+/dist
+/tmp
+/.angular/
+/.nx/
+
+# Dependencias
+# Igual que en el backend, esta carpeta es gigante y se regenera con 'npm install'.
+/node_modules
+
+# Archivos de registro y de paquetes
+# Logs y paquetes descargados que no son parte del código fuente.
+*.log
+*.tgz
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración del editor
+.idea/
+.vscode/
+*.iml
+*.suo
+
+# Archivos de configuración de herramientas de testing
+/coverage
+/e2e/videos/
+/e2e/screenshots/

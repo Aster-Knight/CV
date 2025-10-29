@@ -1,0 +1,50 @@
+
+
+:host header {
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 1rem;
+  min-height: 300px;
+  color: #e0e0e0; 
+  
+  
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  
+  
+  background-color: #2c3e50; 
+}
+
+
+:host header::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+
+:host header .header-content {
+  position: relative;
+  z-index: 2;
+}
+
+
+:host header h1,
+:host header h2 {
+  color: #ffffff;
+}
+
+:host header h1, :host header h2, :host header p, :host header a {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+:host header a,
+:host header .btn-outline-light {
+    color: #ffffff;
+    border-color: #ffffff;
+}

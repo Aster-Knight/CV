@@ -1,0 +1,27 @@
+
+<div class="card">
+  <h3>Mis Proyectos en GitHub</h3>
+
+  
+  <div *ngIf="isLoading">
+    <p>Cargando repositorios...</p>
+  </div>
+
+  
+  <ul *ngIf="!isLoading" class="list-group list-group-flush">
+    <li *ngFor="let repo of repos" class="list-group-item bg-transparent text-white">
+      <h5>
+        
+        <a [href]="repo.html_url" target="_blank" rel="noopener noreferrer">
+          {{ repo.name }}
+        </a>
+      </h5>
+      
+      <p class="small text-white-50">{{ repo.description || 'Sin descripción.' }}</p>
+      
+      <span class="badge bg-primary rounded-pill">
+        ★ {{ repo.stargazers_count }}
+      </span>
+    </li>
+  </ul>
+</div>
