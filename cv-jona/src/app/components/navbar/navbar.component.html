@@ -19,9 +19,21 @@
             </ul>
         </div>
 
-        <form class="d-flex ms-lg-3" role="search" onsubmit="return false;">
-            <input id="skill-search-input" class="form-control" type="search" placeholder="Buscar habilidad..."
-                aria-label="Search">
+        <form class="d-flex ms-lg-3 position-relative" role="search" onsubmit="return false;">
+            <input 
+                id="skill-search-input" 
+                class="form-control" 
+                type="search" 
+                placeholder="Buscar en CV y GitHub..."
+                aria-label="Search"
+                (input)="onSearch($event)"
+                (blur)="hideResults()">
+            
+            <app-search-results 
+                *ngIf="showResults"
+                [results]="results"
+                [isLoading]="isLoading">
+            </app-search-results>
         </form>
 
     </div>

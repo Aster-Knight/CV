@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NasaService, ApodResponse } from '../../services/nasa';
+import { ThemeService } from '../../services/theme.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,20 +13,15 @@ import { NasaService, ApodResponse } from '../../services/nasa';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   
-
-  
   greetingText = '';
   currentTime = '';
   currentDate = '';
   greetingIconClass = '';
   
-  
   profilePhoto = 'assets/cv-foto.webp';
-  
   
   backgroundImageUrl = '';
 
-  
   isContactMinimal = false;
   contactIconClass = 'bi bi-person-lines-fill me-2';
   contactButtonText = 'Contacto Detallado';
@@ -32,33 +29,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
   themeIconClass = 'bi bi-moon-stars-fill me-2';
 
   private timerId: any;
+  private themeSubscription: Subscription | undefined;
 
-  
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private nasaService: NasaService
-  ) {}
+    private nasaService: NasaService,
+    @Optional() private themeService: ThemeService
+  ) {
+    if (this.themeService) {
+      this.themeSubscription = this.themeService.isLightMode$.subscribe(isLightMode => {
+        this.isLightMode = isLightMode;
+        this.updateThemeVisuals();
+      });
+    }
+  }
 
   ngOnInit(): void {
-    
     if (isPlatformBrowser(this.platformId)) {
-      
       this.nasaService.getAstronomyPictureOfTheDay().subscribe({
         next: (data: ApodResponse) => {
           if (data.media_type === 'image') {
             this.backgroundImageUrl = data.hdurl || data.url;
           } else {
-            
             this.backgroundImageUrl = 'assets/fondo_perfil.gif';
           }
         },
         error: (err) => {
           console.error('Error fetching NASA APOD, using fallback:', err);
-          
           this.backgroundImageUrl = 'assets/fondo_perfil.gif';
         }
       });
-      
       
       this.updateDynamicGreeting();
       this.timerId = setInterval(() => this.updateDynamicGreeting(), 1000);
@@ -69,13 +69,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.timerId) {
       clearInterval(this.timerId);
     }
+    this.themeSubscription?.unsubscribe();
   }
-
-  
 
   async generatePDF(): Promise<void> {
     if (isPlatformBrowser(this.platformId)) {
-      
       const html2pdf = (await import('html2pdf.js')).default;
 
       const bodyElement = document.body;
@@ -92,8 +90,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
   toggleContactView(): void {
     this.isContactMinimal = !this.isContactMinimal;
     if (this.isContactMinimal) {
@@ -108,17 +104,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleTheme(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isLightMode = !this.isLightMode;
-      document.body.classList.toggle('light-mode', this.isLightMode);
+    this.themeService?.toggleTheme();
+  }
 
-      if (this.isLightMode) {
-        this.profilePhoto = 'assets/profile_black.webp';
-        this.themeIconClass = 'bi bi-sun-fill me-2';
-      } else {
-        this.profilePhoto = 'assets/cv-foto.webp';
-        this.themeIconClass = 'bi bi-moon-stars-fill me-2';
-      }
+  private updateThemeVisuals(): void {
+    if (this.isLightMode) {
+      this.profilePhoto = 'assets/profile_black.webp';
+      this.themeIconClass = 'bi bi-sun-fill me-2';
+    } else {
+      this.profilePhoto = 'assets/cv-foto.webp';
+      this.themeIconClass = 'bi bi-moon-stars-fill me-2';
     }
   }
 

@@ -1,40 +1,57 @@
-import { Component } from '@angular/core';
-
+import { Component, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { SearchService, SearchResult } from '../../services/search.service';
+import { SearchResultsComponent } from '../search-results/search-results.component';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
+  imports: [CommonModule, SearchResultsComponent],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
-  imports: [],
+  styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  filterSkills(event: Event): void {
-    const searchInput = document.getElementById('skill-search-input');
-    const allFilterableElements = document.querySelectorAll('.filterable-skill, .skill-container');
+export class NavbarComponent implements OnDestroy {
+  results: SearchResult[] = [];
+  isLoading = false;
+  showResults = false;
 
-    allFilterableElements.forEach(element => {
+  private searchTerm = new Subject<string>();
+  private searchSubscription: Subscription;
 
-      function filterSkills() {
-        const searchTerm = (searchInput as HTMLInputElement).value.toLowerCase();
-        allFilterableElements.forEach(element => {
-          if (element.classList.contains('skill-container')) {
-            const items = element.querySelectorAll('.filterable-item');
-            let hasVisibleItem = false;
-            items.forEach(item => {
-              if (item.textContent.toLowerCase().includes(searchTerm)) {
-                item.classList.remove('hidden-skill');
-                hasVisibleItem = true;
-              } else {
-                item.classList.add('hidden-skill');
-              }
-            });
-            element.classList.toggle('hidden-skill', !hasVisibleItem);
-          } else {
-            element.classList.toggle('hidden-skill', !element.textContent.toLowerCase().includes(searchTerm));
-          }
-        });
-      }
-
+  constructor(private searchService: SearchService) {
+    this.searchSubscription = this.searchTerm.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => {
+        this.isLoading = true;
+        this.showResults = true;
+        this.results = [];
+      }),
+      switchMap((term: string) => this.searchService.search(term)),
+      tap(() => this.isLoading = false)
+    ).subscribe(results => {
+      this.results = results;
     });
+  }
+
+  onSearch(event: Event): void {
+    const term = (event.target as HTMLInputElement).value;
+    this.searchTerm.next(term);
+    if (!term.trim()) {
+      this.showResults = false;
+    }
+  }
+
+  hideResults(): void {
+    // Hide results with a small delay to allow click events to register
+    setTimeout(() => {
+      this.showResults = false;
+    }, 200);
+  }
+
+  ngOnDestroy(): void {
+    this.searchSubscription.unsubscribe();
   }
 }
