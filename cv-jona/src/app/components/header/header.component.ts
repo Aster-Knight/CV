@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   
   isContactMinimal = false;
-  experienceIconClass = 'bi bi-patch-check-fill me-2';
   contactIconClass = 'bi bi-person-lines-fill me-2';
   contactButtonText = 'Contacto Detallado';
   themeIconClass = 'bi bi-sun-fill me-2';
@@ -93,15 +92,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleExperience(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const experienceSection = document.getElementById('experiencia');
-      if (experienceSection) {
-        experienceSection.classList.toggle('section-hidden');
-        this.experienceIconClass = experienceSection.classList.contains('section-hidden') ? 'bi bi-patch-plus-fill me-2' : 'bi bi-patch-check-fill me-2';
-      }
-    }
-  }
+
 
   toggleContactView(): void {
     this.isContactMinimal = !this.isContactMinimal;

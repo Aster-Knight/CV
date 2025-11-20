@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router'; 
+import { JobsListComponent } from '../jobs-list/jobs-list';
+import { StudiesListComponent } from '../studies-list/studies-list';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive], 
+  imports: [JobsListComponent, StudiesListComponent],
   templateUrl: './experience.html',
   styleUrl: './experience.css'
 })

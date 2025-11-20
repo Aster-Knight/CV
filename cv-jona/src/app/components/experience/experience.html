@@ -1,13 +1,14 @@
 <div class="card">
-    <h2>Experiencia y Formación</h2>
-    <p>Navega entre mi experiencia profesional y mi formación académica.</p>
+  <h2>Experiencia y Formación</h2>
+  <p>Mi trayectoria profesional y académica.</p>
 
-    
-    <nav class="nav nav-pills my-3">
-      <a class="nav-link" routerLink="jobs" routerLinkActive="active">Trabajos</a>
-      <a class="nav-link" routerLink="studies" routerLinkActive="active">Estudios</a>
-    </nav>
-    
-    
-    <router-outlet></router-outlet>
+  <div class="mt-4">
+    <h3>Experiencia Laboral</h3>
+    <app-jobs-list></app-jobs-list>
+  </div>
+
+  <div class="mt-5">
+    <h3>Formación Académica</h3>
+    <app-studies-list></app-studies-list>
+  </div>
 </div>

@@ -1,50 +1,227 @@
-
-
 :host header {
   position: relative;
   overflow: hidden;
-  padding: 3rem 1rem;
+  padding: 2rem;
   min-height: 300px;
-  color: #e0e0e0; 
-  
-  
+  color: #e0e0e0;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
-  
-  
-  background-color: #2c3e50; 
+  background-color: #2c3e50;
 }
-
 
 :host header::after {
   content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
-
-:host header .header-content {
+.header-grid {
   position: relative;
   z-index: 2;
+  display: grid;
+  grid-template-areas:
+    "greeting buttons"
+    "profile profile";
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Grid Areas */
+.action-buttons-container {
+  grid-area: buttons;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  /* Center switches in their column */
+  justify-content: space-around;
+  /* Distribute vertical space */
+  height: 100%;
+  /* Take full height to distribute */
+  padding: 1rem 0;
+}
 
+.dynamic-greeting-container {
+  grid-area: greeting;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-group {
+  grid-area: profile;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+/* Desktop Layout */
+@media (min-width: 768px) {
+  .header-grid {
+    grid-template-areas: "greeting profile buttons";
+    grid-template-columns: 0.8fr 2fr auto;
+    /* Greeting smaller, Profile larger, Buttons auto */
+  }
+
+  .dynamic-greeting-container {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .profile-group {
+    flex-direction: row;
+    text-align: left;
+    justify-content: center;
+    /* Center profile in its middle column */
+  }
+
+  .header-text {
+    margin-left: 2rem;
+  }
+}
+
+/* Light Mode / Hidden Greeting Behavior */
+/* When greeting is hidden (e.g. light mode), profile takes its space */
+:host-context(body.light-mode) .dynamic-greeting-container {
+  display: none;
+}
+
+:host-context(body.light-mode) .header-grid {
+  /* Redefine grid for light mode */
+  grid-template-areas:
+    "profile buttons";
+  grid-template-columns: 1fr auto;
+  /* Profile takes remaining space */
+}
+
+:host-context(body.light-mode) .profile-group {
+  justify-content: flex-start;
+  /* Align profile to the left */
+}
+
+/* Switch Styles */
+.switch-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: #fff;
+}
+
+.switch-icon {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.switch-label {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Text Shadows */
 :host header h1,
-:host header h2 {
-  color: #ffffff;
-}
-
-:host header h1, :host header h2, :host header p, :host header a {
+:host header h2,
+:host header p,
+:host header a,
+.switch-group i {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 :host header a,
 :host header .btn-outline-light {
-    color: #ffffff;
-    border-color: #ffffff;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* Light Mode Overrides */
+:host-context(body.light-mode) header h1,
+:host-context(body.light-mode) header h2,
+:host-context(body.light-mode) header p,
+:host-context(body.light-mode) header a,
+:host-context(body.light-mode) .switch-group i {
+  color: #212529;
+  text-shadow: none;
+}
+
+:host-context(body.light-mode) .switch-group {
+  color: #212529;
+}
+
+:host-context(body.light-mode) .slider {
+  background-color: #ccc;
+  /* Keep gray for off */
+}
+
+:host-context(body.light-mode) input:checked+.slider {
+  background-color: #0d6efd;
+  /* Bootstrap primary for on */
 }

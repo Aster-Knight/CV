@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 :root {
@@ -28,7 +27,9 @@ body {
 
 
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
@@ -43,44 +44,6 @@ a:hover {
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
-
-th, td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--text-secondary);
-}
-
-
-
-
-
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.sidebar, .main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-
-
-
-
-.header-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 2rem;
     width: 100%;
 }
@@ -196,7 +159,9 @@ body.light-mode .card {
     border: 1px solid #dee2e6 !important;
 }
 
-body.light-mode h1, body.light-mode h2, body.light-mode h3 {
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3 {
     color: #007bff !important;
 }
 
@@ -216,6 +181,7 @@ body.light-mode .btn-outline-light {
     color: #212529 !important;
     border-color: #212529 !important;
 }
+
 body.light-mode .btn-outline-light:hover {
     color: #fff !important;
     background-color: #212529 !important;
@@ -262,7 +228,10 @@ body.pdf-view .card {
     transform: none !important;
 }
 
-body.pdf-view h1, body.pdf-view h2, body.pdf-view h3, body.pdf-view a {
+body.pdf-view h1,
+body.pdf-view h2,
+body.pdf-view h3,
+body.pdf-view a {
     color: #000 !important;
 }
 
@@ -275,7 +244,9 @@ body.pdf-view .profile-photo {
     border-color: #000 !important;
 }
 
-body.pdf-view main, .pdf-view .sidebar, .pdf-view .main-content {
+body.pdf-view main,
+.pdf-view .sidebar,
+.pdf-view .main-content {
     display: block !important;
     width: 100% !important;
 }
@@ -286,11 +257,13 @@ body.pdf-view .container {
     margin: 0 !important;
 }
 
-body.pdf-view .table, .pdf-view .table-dark {
+body.pdf-view .table,
+.pdf-view .table-dark {
     background-color: #fff !important;
     color: #000 !important;
 }
-body.pdf-view .table > :not(caption) > * > * {
+
+body.pdf-view .table> :not(caption)>*>* {
     background-color: inherit !important;
 }
 
@@ -305,7 +278,7 @@ body.pdf-view .table > :not(caption) > * > * {
         gap: 2rem;
         padding: 2rem;
     }
-    
+
     .header-content {
         display: grid;
         grid-template-columns: auto 1fr auto;
@@ -345,12 +318,12 @@ body.pdf-view .table > :not(caption) > * > * {
 
 
 body.light-mode .header-dynamic-bg {
-  background-image: none !important; 
-  background-color: #e9ecef;       
+    background-image: none !important;
+    background-color: #e9ecef;
 }
 
 body.light-mode .header-dynamic-bg::after {
-  display: none; 
+    display: none;
 }
 
 body.light-mode header h1,
@@ -359,39 +332,39 @@ body.light-mode header p,
 body.light-mode header a,
 body.light-mode header .dynamic-greeting-container,
 body.light-mode header .btn-outline-light {
-  color: #212529; 
-  text-shadow: none; 
+    color: #212529;
+    text-shadow: none;
 }
 
 
 
 body.pdf-view .header-dynamic-bg {
-  background-image: none !important; 
-  background-color: #f0f0f0 !important;
+    background-image: none !important;
+    background-color: #f0f0f0 !important;
 }
 
 body.pdf-view .header-dynamic-bg::after {
-  display: none; 
+    display: none;
 }
 
 body.pdf-view header h1,
 body.pdf-view header h2,
 body.pdf-view header p,
 body.pdf-view header a {
-  color: #000000 !important; 
-  text-shadow: none !important;
+    color: #000000 !important;
+    text-shadow: none !important;
 }
 
 
 
 body.light-mode header {
-  background-image: none !important; 
-  background-color: #e9ecef !important; 
-  color: #212529 !important; 
+    background-image: none !important;
+    background-color: #e9ecef !important;
+    color: #212529 !important;
 }
 
 body.light-mode header::after {
-  display: none; 
+    display: none;
 }
 
 body.light-mode header h1,
@@ -399,8 +372,8 @@ body.light-mode header h2,
 body.light-mode header p,
 body.light-mode header a,
 body.light-mode header .btn-outline-light {
-  color: inherit; 
-  text-shadow: none; 
+    color: inherit;
+    text-shadow: none;
 }
 
 body.light-mode header .btn-outline-light {
@@ -409,29 +382,32 @@ body.light-mode header .btn-outline-light {
 
 
 body.pdf-view header {
-  background-image: none !important;
-  background-color: #f0f0f0 !important;
+    background-image: none !important;
+    background-color: #f0f0f0 !important;
 }
 
 body.pdf-view header::after {
-  display: none;
+    display: none;
 }
 
-body.pdf-view header h1, body.pdf-view header h2, body.pdf-view header p, body.pdf-view header a {
-  color: #000000 !important;
-  text-shadow: none !important;
+body.pdf-view header h1,
+body.pdf-view header h2,
+body.pdf-view header p,
+body.pdf-view header a {
+    color: #000000 !important;
+    text-shadow: none !important;
 }
 
 
 
 body.light-mode header {
-  background-image: none !important; 
-  background-color: #e9ecef !important; 
-  color: #212529 !important; 
+    background-image: none !important;
+    background-color: #e9ecef !important;
+    color: #212529 !important;
 }
 
 body.light-mode header::after {
-  display: none; 
+    display: none;
 }
 
 body.light-mode header h1,
@@ -439,8 +415,8 @@ body.light-mode header h2,
 body.light-mode header p,
 body.light-mode header a,
 body.light-mode header .btn-outline-light {
-  color: inherit; 
-  text-shadow: none; 
+    color: inherit;
+    text-shadow: none;
 }
 
 body.light-mode header .btn-outline-light {
@@ -449,15 +425,18 @@ body.light-mode header .btn-outline-light {
 
 
 body.pdf-view header {
-  background-image: none !important;
-  background-color: #f0f0f0 !important;
+    background-image: none !important;
+    background-color: #f0f0f0 !important;
 }
 
 body.pdf-view header::after {
-  display: none;
+    display: none;
 }
 
-body.pdf-view header h1, body.pdf-view header h2, body.pdf-view header p, body.pdf-view header a {
-  color: #000000 !important;
-  text-shadow: none !important;
+body.pdf-view header h1,
+body.pdf-view header h2,
+body.pdf-view header p,
+body.pdf-view header a {
+    color: #000000 !important;
+    text-shadow: none !important;
 }

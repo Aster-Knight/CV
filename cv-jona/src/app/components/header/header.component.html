@@ -1,41 +1,58 @@
-<header class="d-flex justify-content-center align-items-center header-dynamic-bg"
-  [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }">
-    <div class="header-content">
-        
+<header class="header-dynamic-bg" [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }">
+    <div class="header-grid">
+        <!-- Area: Buttons -->
+        <div class="action-buttons-container">
+            <!-- Contact Switch -->
+            <div class="switch-group">
+                <i class="switch-icon {{ contactIconClass }}"></i>
+                <label class="switch">
+                    <input type="checkbox" [checked]="!isContactMinimal" (change)="toggleContactView()">
+                    <span class="slider round"></span>
+                </label>
+                <span class="switch-label">{{ isContactMinimal ? 'Básico' : 'Detallado' }}</span>
+            </div>
+
+            <!-- Theme Switch -->
+            <div class="switch-group">
+                <i class="switch-icon {{ themeIconClass }}"></i>
+                <label class="switch">
+                    <input type="checkbox" [checked]="themeButtonText === 'Modo Claro'" (change)="toggleTheme()">
+                    <span class="slider round"></span>
+                </label>
+                <span class="switch-label">{{ themeButtonText === 'Modo Claro' ? 'Oscuro' : 'Claro' }}</span>
+            </div>
+        </div>
+
+        <!-- Area: Greeting -->
         <div id="dynamic-greeting" class="dynamic-greeting-container">
             <div class="d-flex align-items-center justify-content-center justify-content-md-start">
                 <i [class]="greetingIconClass" class="display-4 me-3"></i>
                 <p class="m-0 fs-3">{{ greetingText }}</p>
             </div>
-            
-             
             <p class="m-0 display-4 fw-bold">{{ currentTime }}</p>
             <p class="m-0 text-white-50 fs-5">{{ currentDate }}</p>
         </div>
 
-        
-        <div class="profile-group d-flex flex-column flex-md-row align-items-center">
+        <!-- Area: Profile -->
+        <div class="profile-group">
             <div class="profile-picture-container">
-                <img [src]="profilePhoto" alt="Foto de Jonatan Aguilar" class="profile-photo rounded-circle border border-primary border-5">
+                <img [src]="profilePhoto" alt="Foto de Jonatan Aguilar"
+                    class="profile-photo rounded-circle border border-primary border-5">
             </div>
             <div class="header-text" [class.minimal-view]="isContactMinimal">
-                
-                <h1>{{"Jonatan Aguilar"|uppercase}}</h1> 
+                <h1>{{"Jonatan Aguilar"|uppercase}}</h1>
                 <h2>{{"Estudiante de Computer Science"|uppercase}}</h2>
                 <nav id="contact-links">
-                    <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Correo</a>
-                    <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center"><i class="bi bi-github me-2"></i> Github</a>
-                    <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/" class="d-inline-flex align-items-center"><i class="bi bi-linkedin me-2"></i> Linkedin</a>
-                    <button id="download-btn" class="btn btn-outline-light d-inline-flex align-items-center gap-2" (click)="generatePDF()"><i class="bi bi-download"></i> Descargar CV</button>
+                    <a href="mailto:josue.aguilar@ufm.edu" class="d-inline-flex align-items-center"><i
+                            class="bi bi-envelope-fill me-2"></i> Correo</a>
+                    <a href="https://github.com/Aster-Knight" class="d-inline-flex align-items-center"><i
+                            class="bi bi-github me-2"></i> Github</a>
+                    <a href="https://www.linkedin.com/in/jonatan-aguilar-a1879b37b/"
+                        class="d-inline-flex align-items-center"><i class="bi bi-linkedin me-2"></i> Linkedin</a>
+                    <button id="download-btn" class="btn btn-outline-light d-inline-flex align-items-center gap-2"
+                        (click)="generatePDF()"><i class="bi bi-download"></i> Descargar CV</button>
                 </nav>
             </div>
-        </div>
-
-        
-        <div class="action-buttons-container d-flex flex-column gap-3">
-            <button id="toggle-experience-btn" class="btn btn-primary" (click)="toggleExperience()"><i [class]="experienceIconClass"></i> Experiencia</button>
-            <button id="toggle-contact-btn" class="btn btn-info" (click)="toggleContactView()"><i [class]="contactIconClass"></i> {{ contactButtonText }}</button>
-            <button id="toggle-theme-btn" class="btn btn-secondary" (click)="toggleTheme()"><i [class]="themeIconClass"></i> {{ themeButtonText }}</button>
         </div>
     </div>
 </header>

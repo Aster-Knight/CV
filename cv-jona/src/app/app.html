@@ -1,14 +1,21 @@
-
 <app-navbar></app-navbar>
 <app-header></app-header>
 <main class="main-layout">
-  
+
   <aside class="sidebar">
     <app-projects></app-projects>
   </aside>
 
-  
+
   <div class="main-content">
-    <router-outlet></router-outlet>
+    <section id="about">
+      <app-about></app-about>
+    </section>
+    <section id="experience">
+      <app-experience></app-experience>
+    </section>
+    <section id="skills">
+      <app-skills></app-skills>
+    </section>
   </div>
 </main>
