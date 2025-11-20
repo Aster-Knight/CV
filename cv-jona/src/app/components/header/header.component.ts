@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isContactMinimal = false;
   contactIconClass = 'bi bi-person-lines-fill me-2';
   contactButtonText = 'Contacto Detallado';
-  themeIconClass = 'bi bi-sun-fill me-2';
-  themeButtonText = 'Modo Claro';
+  isLightMode = false;
+  themeIconClass = 'bi bi-moon-stars-fill me-2';
 
   private timerId: any;
 
@@ -109,15 +109,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   toggleTheme(): void {
     if (isPlatformBrowser(this.platformId)) {
-      document.body.classList.toggle('light-mode');
-      if (document.body.classList.contains('light-mode')) {
-        this.profilePhoto = 'assets/profile_black.webp'; 
-        this.themeIconClass = 'bi bi-moon-stars-fill me-2';
-        this.themeButtonText = 'Modo Oscuro';
-      } else {
-        this.profilePhoto = 'assets/cv-foto.webp'; 
+      this.isLightMode = !this.isLightMode;
+      document.body.classList.toggle('light-mode', this.isLightMode);
+
+      if (this.isLightMode) {
+        this.profilePhoto = 'assets/profile_black.webp';
         this.themeIconClass = 'bi bi-sun-fill me-2';
-        this.themeButtonText = 'Modo Claro';
+      } else {
+        this.profilePhoto = 'assets/cv-foto.webp';
+        this.themeIconClass = 'bi bi-moon-stars-fill me-2';
       }
     }
   }

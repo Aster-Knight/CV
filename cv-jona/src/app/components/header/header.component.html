@@ -16,10 +16,10 @@
             <div class="switch-group">
                 <i class="switch-icon {{ themeIconClass }}"></i>
                 <label class="switch">
-                    <input type="checkbox" [checked]="themeButtonText === 'Modo Claro'" (change)="toggleTheme()">
+                    <input type="checkbox" [checked]="isLightMode" (change)="toggleTheme()">
                     <span class="slider round"></span>
                 </label>
-                <span class="switch-label">{{ themeButtonText === 'Modo Claro' ? 'Oscuro' : 'Claro' }}</span>
+                <span class="switch-label">{{ isLightMode ? 'Claro' : 'Oscuro' }}</span>
             </div>
         </div>
 
