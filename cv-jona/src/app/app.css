@@ -44,3 +44,14 @@ main {
         grid-template-columns: 1fr; 
     }
 }
+
+@media (min-width: 993px) {
+  .sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+    align-self: start;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+}

@@ -1,11 +1,13 @@
 <div class="card">
-  <div *ngIf="profile" class="text-center mb-4">
-    <img [src]="profile.avatar_url" alt="GitHub Avatar" class="rounded-circle mb-3"
-      style="width: 100px; height: 100px;">
-    <h3>{{ profile.name || profile.login }}</h3>
-    <a [href]="profile.html_url" target="_blank" class="btn btn-outline-light btn-sm">
-      <i class="bi bi-github me-2"></i>Ver Perfil
-    </a>
+  <div *ngIf="profile" class="profile-header d-flex align-items-center mb-3">
+    <img [src]="profile.avatar_url" alt="GitHub Avatar" class="rounded-circle me-3"
+      style="width: 75px; height: 75px;">
+    <div class="profile-info">
+      <h5 class="mb-1">{{ profile.name || profile.login }}</h5>
+      <a [href]="profile.html_url" target="_blank" class="btn btn-outline-light btn-sm">
+        <i class="bi bi-github me-2"></i>Ver Perfil
+      </a>
+    </div>
   </div>
 
   <h3 class="mb-3">Proyectos Recientes</h3>
@@ -17,12 +19,12 @@
 
   <div *ngIf="!isLoading" class="list-group">
     <a *ngFor="let repo of repos" [href]="repo.html_url" target="_blank"
-      class="list-group-item list-group-item-action bg-dark text-light border-secondary mb-2 rounded">
+      class="list-group-item list-group-item-action bg-dark text-light border-secondary mb-1 rounded">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 text-primary">{{ repo.name }}</h5>
         <small><i class="bi bi-star-fill text-warning"></i> {{ repo.stargazers_count }}</small>
       </div>
-      <p class="mb-1 text-muted small">{{ repo.description || 'Sin descripción' }}</p>
+      <p class="mb-1 text-light">{{ (repo.description || 'Sin descripción') | truncate:50 }}</p>
     </a>
   </div>
 </div>
