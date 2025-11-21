@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface Skill {
   id: number;
@@ -16,10 +17,18 @@ export class SkillsService {
   
   private readonly apiUrl = '/api/skills';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object // Inyectamos el identificador de plataforma
+  ) { }
 
   public getSkills(): Observable<Skill[]> {
-    return this.http.get<Skill[]>(this.apiUrl);
+    // Verificamos si estamos ejecutándonos en el navegador
+    if (isPlatformBrowser(this.platformId)) {
+      return this.http.get<Skill[]>(this.apiUrl);
+    }
+    // Si estamos en el servidor (Build/SSR), retornamos un array vacío para que no falle
+    return of([]); 
   }
   
 }
