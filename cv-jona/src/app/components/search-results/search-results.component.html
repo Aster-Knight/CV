@@ -1,24 +1,32 @@
-<div class="search-results-panel" *ngIf="results.length > 0 || isLoading">
-  <div *ngIf="isLoading" class="text-center p-3">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Buscando...</span>
-    </div>
-  </div>
-
-  <div *ngIf="!isLoading && results.length > 0" class="list-group list-group-flush">
-    <a *ngFor="let result of results" 
-       [href]="result.url" 
-       (click)="onResultClick(result, $event)"
-       class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h6 class="mb-1 text-primary">{{ result.title }}</h6>
-        <small class="text-muted">{{ result.type }}</small>
+@if (results.length > 0 || isLoading) {
+  <div class="search-results-panel">
+    @if (isLoading) {
+      <div class="text-center p-3">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Buscando...</span>
+        </div>
       </div>
-      <p class="mb-1 small">{{ (result.description || 'Sin descripción') | truncate:80 }}</p>
-    </a>
+    }
+    @if (!isLoading && results.length > 0) {
+      <div class="list-group list-group-flush">
+        @for (result of results; track result) {
+          <a
+            [href]="result.url"
+            (click)="onResultClick(result, $event)"
+            class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h6 class="mb-1 text-primary">{{ result.title }}</h6>
+              <small class="text-muted">{{ result.type }}</small>
+            </div>
+            <p class="mb-1 small">{{ (result.description || 'Sin descripción') | truncate:80 }}</p>
+          </a>
+        }
+      </div>
+    }
+    @if (!isLoading && results.length === 0) {
+      <div class="p-3 text-center text-muted">
+        No se encontraron resultados.
+      </div>
+    }
   </div>
-
-  <div *ngIf="!isLoading && results.length === 0" class="p-3 text-center text-muted">
-    No se encontraron resultados.
-  </div>
-</div>
+}

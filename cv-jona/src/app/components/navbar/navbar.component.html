@@ -1,40 +1,41 @@
 <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Jonatan Aguilar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Jonatan Aguilar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">Sobre Mí</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#experience">Experiencia</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#skills">Habilidades</a>
-                </li>
-            </ul>
-        </div>
-
-        <form class="d-flex ms-lg-3 position-relative" role="search" onsubmit="return false;">
-            <input 
-                id="skill-search-input" 
-                class="form-control" 
-                type="search" 
-                placeholder="Buscar en CV y GitHub..."
-                aria-label="Search"
-                (input)="onSearch($event)"
-                (blur)="hideResults()">
-            
-            <app-search-results 
-                *ngIf="showResults"
-                [results]="results"
-                [isLoading]="isLoading">
-            </app-search-results>
-        </form>
-
+        <li class="nav-item">
+          <a class="nav-link" href="#about">Sobre Mí</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#experience">Experiencia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">Habilidades</a>
+        </li>
+      </ul>
     </div>
+
+    <form class="d-flex ms-lg-3 position-relative" role="search" onsubmit="return false;">
+      <input
+        id="skill-search-input"
+        class="form-control"
+        type="search"
+        placeholder="Buscar en CV y GitHub..."
+        aria-label="Search"
+        (input)="onSearch($event)"
+        (blur)="hideResults()">
+
+      @if (showResults) {
+        <app-search-results
+          [results]="results"
+          [isLoading]="isLoading">
+        </app-search-results>
+      }
+    </form>
+
+  </div>
 </nav>

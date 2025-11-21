@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { SearchService, SearchResult } from '../../services/search.service';
@@ -8,7 +8,7 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, SearchResultsComponent],
+  imports: [SearchResultsComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })

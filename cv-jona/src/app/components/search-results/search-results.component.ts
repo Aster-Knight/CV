@@ -1,12 +1,12 @@
 import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { SearchResult } from '../../services/search.service';
 import { TruncatePipe } from '../../pipes/truncate-pipe';
 
 @Component({
   selector: 'app-search-results',
   standalone: true,
-  imports: [CommonModule, TruncatePipe],
+  imports: [TruncatePipe],
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css']
 })

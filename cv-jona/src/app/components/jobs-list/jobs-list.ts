@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DataService, ExperienceItem } from '../../services/data';
 
 @Component({
   selector: 'app-jobs-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './jobs-list.html',
   styleUrl: './jobs-list.css'
 })

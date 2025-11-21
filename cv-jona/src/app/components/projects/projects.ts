@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { GithubService, GithubRepo, GithubProfile } from '../../services/github';
 import { TruncatePipe } from '../../pipes/truncate-pipe';
@@ -7,7 +7,7 @@ import { TruncatePipe } from '../../pipes/truncate-pipe';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, TruncatePipe],
+  imports: [TruncatePipe],
   templateUrl: './projects.html',
   styleUrl: './projects.css'
 })

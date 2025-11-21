@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DataService, ExperienceItem } from '../../services/data';
 
 @Component({
   selector: 'app-studies-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './studies-list.html',
   styleUrl: './studies-list.css'
 })

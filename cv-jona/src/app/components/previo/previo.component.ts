@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+ 
 
 interface PrevioItem {
   periodo: string;
@@ -10,7 +10,7 @@ interface PrevioItem {
 @Component({
   selector: 'app-previo',
   standalone: true,
-  imports: [CommonModule], 
+  imports: [], 
   templateUrl: './previo.component.html',
   styleUrls: ['./previo.component.css']
 })
