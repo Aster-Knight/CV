@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "API/server.js": {
+      "runtime": "nodejs20.x",
+      "includeFiles": "API/package.json"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/API/server.js"
+    }
+  ]
+}
