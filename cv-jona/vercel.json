@@ -1,13 +1,13 @@
 {
   "functions": {
-    "API/server.js": {
-      "includeFiles": "API/package.json"
+    "api/server.js": {
+      "includeFiles": "api/package.json"
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/API/server.js"
+      "destination": "/api/server.js"
     }
   ]
 }
