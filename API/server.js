@@ -75,6 +75,9 @@ app.delete('/skills/:id', (req, res) => {
   res.status(204).send();
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor de API escuchando en http://localhost:${PORT}`);
-});
+// Modificamos el servidor expres para el despliegue en vercel
+// app.listen(PORT, () => {
+//   console.log(`Servidor de API escuchando en http://localhost:${PORT}`);
+// });
+
+module.exports = app; // Exporta la instancia de la aplicación Express
