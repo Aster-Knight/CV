@@ -14,7 +14,7 @@ export interface Skill {
 })
 export class SkillsService {
   
-  private readonly apiUrl = 'http://localhost:3001/skills';
+  private readonly apiUrl = '/api/skills';
 
   constructor(private http: HttpClient) { }
 

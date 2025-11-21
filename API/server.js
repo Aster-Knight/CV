@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3001;
+const router = express.Router();
 
 app.use(cors());
 app.use(express.json());
@@ -15,11 +15,11 @@ let skills = [
 ];
 let nextId = 5;
 
-app.get('/skills', (req, res) => {
+router.get('/skills', (req, res) => {
   res.json(skills);
 });
 
-app.get('/skills/:id', (req, res) => {
+router.get('/skills/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const skill = skills.find(s => s.id === id);
 
@@ -30,7 +30,7 @@ app.get('/skills/:id', (req, res) => {
   }
 });
 
-app.post('/skills', (req, res) => {
+router.post('/skills', (req, res) => {
   const { name, level, category } = req.body;
 
   if (!name || !level) {
@@ -48,7 +48,7 @@ app.post('/skills', (req, res) => {
   res.status(201).json(newSkill);
 });
 
-app.patch('/skills/:id', (req, res) => {
+router.patch('/skills/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const skillIndex = skills.findIndex(s => s.id === id);
 
@@ -63,7 +63,7 @@ app.patch('/skills/:id', (req, res) => {
   res.json(updatedSkill);
 });
 
-app.delete('/skills/:id', (req, res) => {
+router.delete('/skills/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const skillIndex = skills.findIndex(s => s.id === id);
 
@@ -75,6 +75,10 @@ app.delete('/skills/:id', (req, res) => {
   res.status(204).send();
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor de API escuchando en http://localhost:${PORT}`);
-});
+// Modificamos el servidor expres para el despliegue en vercel
+// app.listen(PORT, () => {
+//   console.log(`Servidor de API escuchando en http://localhost:${PORT}`);
+// });
+app.use('/api', router); // router montado en /api
+
+module.exports = app; // Exporta la instancia de la aplicación Express
